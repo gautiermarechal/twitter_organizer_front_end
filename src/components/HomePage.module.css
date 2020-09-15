@@ -1,0 +1,47 @@
+html {
+  background-color: #16212b;
+}
+
+.mainContainer {
+  background-color: #16212b;
+}
+
+.row1 {
+  margin-top: 30px;
+  align-items: center;
+  text-align: center;
+}
+
+.header1 {
+  text-align: center;
+  color: #d0f6e3;
+}
+
+.searchBar {
+  margin-left: 50%;
+}
+
+.searchBarContainer {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchBarContainer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.gridButton {
+  height: 190px;
+  width: 100%;
+  border-radius: 20px !important;
+  font-size: 25px !important;
+}
+
+.gridButton:hover {
+  background-color: #d0f6e3 !important;
+  border-color: #d0f6e3 !important;
+  color: #16212b !important;
+}

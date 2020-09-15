@@ -1,0 +1,32 @@
+.collapseContainer {
+  vertical-align: middle;
+  background-color: #076a5d;
+  border-radius: 7px;
+}
+
+.navBarContainer {
+  height: 70px;
+  background-color: #076a5d;
+}
+
+.navItemsContainer {
+  margin-left: auto;
+  vertical-align: middle;
+}
+
+.navItem {
+  margin-top: 12px;
+}
+
+.navItemButton {
+  background-color: #076a5d !important;
+  color: #d0f6e3 !important;
+  border-radius: 25px !important;
+  border-color: #d0f6e3 !important;
+  border-width: 2px !important;
+}
+
+.navItemButton:hover {
+  background-color: #d0f6e3 !important;
+  color: #076a5d !important;
+}
