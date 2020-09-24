@@ -3,6 +3,7 @@ import styles from "./NavigationBar.module.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
@@ -12,7 +13,9 @@ function NavigationBar() {
       expand="md"
       variant="dark"
     >
-      <Navbar.Brand>Twitter Organizer</Navbar.Brand>
+      <Link to="/">
+        <Navbar.Brand>Twitter Organizer</Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse
         id="responsive-navbar-nav"

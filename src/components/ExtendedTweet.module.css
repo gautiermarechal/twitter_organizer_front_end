@@ -1,0 +1,38 @@
+.articleContainer {
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+.tweetContainer {
+  background-color: #16212b !important;
+  color: #d0f6e3 !important;
+  width: 100%;
+}
+
+.userImage {
+  border-radius: 50% !important;
+}
+
+.tweetHeader {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.readButton {
+  border-radius: 50px !important;
+  background-color: #16212b !important;
+  border-color: #d0f6e3 !important;
+}
+
+.readButton:hover {
+  background-color: #d0f6e3 !important;
+  color: #16212b !important;
+}
+
+.tweetText {
+  color: #d0f6e3 !important;
+  text-align: left !important;
+  line-height: 2;
+  font-size: 25px;
+}
