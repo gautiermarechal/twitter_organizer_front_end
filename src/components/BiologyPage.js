@@ -12,7 +12,26 @@ function BiologyPage() {
 
   useEffect(() => {
     async function get() {
-      await api.getTweetByCategory("economics").then((res) => {
+      await api.getTweetByCategory("psychology").then((res) => {
+        let formattedContentData = res.data;
+        formattedContentData = formattedContentData.map((element) => {
+          if (element.tweet_organized_content.charAt(0) === "{") {
+            element.tweet_organized_content = element.tweet_organized_content.replace(
+              "{",
+              ""
+            );
+            element.tweet_organized_content = element.tweet_organized_content.replace(
+              "}",
+              ""
+            );
+            console.log(element.tweet_organized_content);
+            element.tweet_organized_content = element.tweet_organized_content.replace(
+              /,/g,
+              "\n"
+            );
+            console.log(element.tweet_organized_content);
+          }
+        });
         setBiologyTweets(res.data);
         console.log(res);
       });
