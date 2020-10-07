@@ -55,7 +55,13 @@ function Tweet(props) {
             </p>
           </Col>
         </Row>
-        <Card.Text className={styles.tweetText}>{props.tweetContent}</Card.Text>
+        {props.tweetContent === null ? (
+          <p></p>
+        ) : (
+          props.tweetContent.map((text) => {
+            return <Card.Text className={styles.tweetText}>{text}</Card.Text>;
+          })
+        )}
         <hr style={{ backgroundColor: "#d0f6e3" }} />
         <Button className={styles.readButton} onClick={handleReadTweet}>
           Read

@@ -9,33 +9,12 @@ import api from "../api/index";
 
 function BiologyPage() {
   const [biologyTweets, setBiologyTweets] = useState([]);
+  const newLine = <br />;
 
   useEffect(() => {
     async function get() {
       await api.getTweetByCategory("psychology").then((res) => {
-        let formattedContentData = res.data;
-        formattedContentData = formattedContentData.map((element) => {
-          if (element.tweet_organized_content.charAt(0) === "{") {
-            element.tweet_organized_content = element.tweet_organized_content.replace(
-              "{",
-              ""
-            );
-            element.tweet_organized_content = element.tweet_organized_content.replace(
-              "}",
-              ""
-            );
-            console.log(element.tweet_organized_content);
-            element.tweet_organized_content = element.tweet_organized_content.replace(
-              /,/g,
-              "\n"
-            );
-            element.tweet_organized_content = element.tweet_organized_content.replace(
-              /"/g,
-              "\n"
-            );
-            console.log(element.tweet_organized_content);
-          }
-        });
+        console.log(res.data);
         setBiologyTweets(res.data);
         console.log(res);
       });

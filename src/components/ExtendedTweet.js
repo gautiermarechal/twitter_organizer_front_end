@@ -10,7 +10,7 @@ function ExtendedTweet(props) {
   const [tweetName, setTweetName] = useState();
   const [tweetScreenName, setScreenName] = useState();
   const [tweetDate, setTweetDate] = useState();
-  const [tweetContent, setTweetContent] = useState();
+  const [tweetContent, setTweetContent] = useState([]);
   const [tweetCategory, setTweetCategory] = useState();
 
   useEffect(() => {
@@ -39,7 +39,11 @@ function ExtendedTweet(props) {
                 {tweetCategory} <p>{tweetDate}</p>
               </Col>
             </Row>
-            <Card.Text className={styles.tweetText}>{tweetContent}</Card.Text>
+            <Card.Text className={styles.tweetText}>
+              {tweetContent.map((text) => {
+                return <p>{text}</p>;
+              })}
+            </Card.Text>
           </Card.Body>
         </Card>
       </article>
