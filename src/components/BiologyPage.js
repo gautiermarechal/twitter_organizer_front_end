@@ -29,6 +29,10 @@ function BiologyPage() {
               /,/g,
               "\n"
             );
+            element.tweet_organized_content = element.tweet_organized_content.replace(
+              /"/g,
+              "\n"
+            );
             console.log(element.tweet_organized_content);
           }
         });
