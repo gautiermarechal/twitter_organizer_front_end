@@ -8,6 +8,7 @@ import NavigationBar from "./components/NavigationBar";
 import HomePage from "./components/HomePage";
 import BiologyPage from "./components/BiologyPage";
 import ExtendedTweet from "./components/ExtendedTweet";
+import SignUp from "./components/SignUp";
 //---------------------------------------------
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/extended">
             <ExtendedTweet tweetContent={tweetContent} />
+          </Route>
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
         </Router>
       </div>
