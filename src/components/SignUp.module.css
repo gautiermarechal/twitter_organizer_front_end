@@ -9,3 +9,35 @@
   width: 100%;
   max-width: 500px;
 }
+
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.successContainer h1 {
+  margin: 30px;
+  color: white;
+}
+
+.successContainer button {
+  background-color: transparent;
+  border-color: white;
+  border-radius: 50px;
+  width: 100px;
+}
+
+.successContainer button:hover {
+  background-color: white;
+  color: #16212b;
+  border-color: white;
+}
+
+.successContainer button:focus {
+  background-color: white;
+  color: #16212b;
+  border-color: white;
+}

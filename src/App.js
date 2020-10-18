@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import BiologyPage from "./components/BiologyPage";
 import ExtendedTweet from "./components/ExtendedTweet";
 import SignUp from "./components/SignUp";
+import { SignUpSuccessful } from "./components/SignUp";
 //---------------------------------------------
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+          <Route>
+            <SignUpSuccessful />
           </Route>
         </Router>
       </div>
