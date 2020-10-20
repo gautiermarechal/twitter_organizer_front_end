@@ -1,0 +1,60 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.mainForm {
+  margin-top: 70px;
+  color: white;
+  width: 100%;
+  max-width: 500px;
+}
+
+.mainContainerModal {
+  display: flex;
+  position: absolute;
+  height: 90vh;
+  width: 100vw;
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.closedModal {
+  display: none;
+}
+
+@keyframes appear {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 40vw;
+    height: 30vh;
+  }
+}
+
+.internalContainerModal {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 7px;
+  width: 40vw;
+  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation-name: appear;
+  animation-duration: 0.2s;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  cursor: pointer;
+}

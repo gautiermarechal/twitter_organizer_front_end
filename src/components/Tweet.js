@@ -33,7 +33,7 @@ function Tweet(props) {
 
   return (
     <Card className={styles.tweetContainer}>
-      <Card.Body>
+      <Card.Body className={styles.tweetBody}>
         <Row className={styles.tweetHeader}>
           <Col style={{ textAlign: "center" }}>
             <img className={styles.userImage} src={test_image} />
@@ -62,7 +62,7 @@ function Tweet(props) {
             return <Card.Text className={styles.tweetText}>{text}</Card.Text>;
           })
         )}
-        <hr style={{ backgroundColor: "#d0f6e3" }} />
+        <hr style={{ backgroundColor: "#d0f6e3", width: "100%" }} />
         <Button className={styles.readButton} onClick={handleReadTweet}>
           Read
         </Button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import { AppContext } from "./libs/contextLibs";
 
@@ -10,6 +10,8 @@ import BiologyPage from "./components/BiologyPage";
 import ExtendedTweet from "./components/ExtendedTweet";
 import SignUp from "./components/SignUp";
 import { SignUpSuccessful } from "./components/SignUp";
+import Login from "./components/Login";
+import AccountHome from "./components/AccountHome";
 //---------------------------------------------
 
 function App() {
@@ -31,8 +33,14 @@ function App() {
           <Route path="/sign-up">
             <SignUp />
           </Route>
-          <Route>
+          <Route path="/sign-up-successfull">
             <SignUpSuccessful />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/account">
+            <AccountHome />
           </Route>
         </Router>
       </div>

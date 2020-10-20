@@ -32,7 +32,12 @@ function NavigationBar() {
               Subjects
             </Button>
           </Nav.Link>
-          <Nav.Link className={styles.navItem}>Sign Up</Nav.Link>
+          <Nav.Link className={styles.navItem}>
+            <Link to="sign-up">Sign Up</Link>
+          </Nav.Link>
+          <Nav.Link className={styles.navItem}>
+            <Link to="login">Login</Link>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

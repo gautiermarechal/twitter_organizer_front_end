@@ -7,6 +7,7 @@ const api = axios.create({
 export const createUser = (payload) => api.post("/user", payload);
 export const getAllUsers = () => api.get("/users");
 export const getUserByID = (id) => api.get(`/user/${id}`);
+export const getUserByEmail = (email) => api.get(`/user/email/${email}`);
 export const updateUser = (id, payload) => api.put(`/user/${id}`, payload);
 export const deleteUser = (id) => api.delete(`/user/${id}`);
 
@@ -23,6 +24,7 @@ const apis = {
   createUser,
   getAllUsers,
   getUserByID,
+  getUserByEmail,
   updateUser,
   deleteUser,
   createOrganizedTweet,

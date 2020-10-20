@@ -1,8 +1,9 @@
 .tweetContainer {
   background-color: #16212b !important;
   border-color: #d0f6e3 !important;
-  border-radius: 30px !important;
+  border-radius: 20px !important;
   color: #d0f6e3 !important;
+  min-height: 300px;
 }
 
 .userImage {
@@ -12,6 +13,12 @@
 .tweetHeader {
   margin-top: 10px;
   text-align: left;
+}
+
+.tweetBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .readButton {
