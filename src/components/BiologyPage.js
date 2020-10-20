@@ -36,22 +36,30 @@ function BiologyPage() {
           </Col>
         </Row>
         <Row className={styles.row1} float="center">
-          {biologyTweets.map((element) => {
-            const tweetIDFormatted = "biology_" + element.tweet_organized_id;
+          {biologyTweets &&
+            biologyTweets.map((element) => {
+              const tweetIDFormatted = "biology_" + element.tweet_organized_id;
 
-            return (
-              <Col lg={true} lg={4} style={{ marginTop: "20px" }}>
-                <Tweet
-                  key={tweetIDFormatted}
-                  userName={element.user_name}
-                  userUserName={element.user_screen_name}
-                  tweetCategory={element.tweet_organized_category}
-                  tweetDate={element.tweet_organized_date}
-                  tweetContent={element.tweet_organized_content}
-                />
-              </Col>
-            );
-          })}
+              console.log(element.tweet_organized_content);
+
+              return (
+                <Col lg={true} lg={4} style={{ marginTop: "20px" }}>
+                  <Tweet
+                    key={tweetIDFormatted}
+                    userName={element.user_name}
+                    userUserName={element.user_screen_name}
+                    tweetCategory={element.tweet_organized_category}
+                    tweetDate={element.tweet_organized_date}
+                    tweetContent={
+                      element.tweet_organized_content
+                        ? element.tweet_organized_content[0]
+                        : element.tweet_organized_content
+                    }
+                    tweetContentExtended={element.tweet_organized_content}
+                  />
+                </Col>
+              );
+            })}
         </Row>
       </Container>
     </>

@@ -24,7 +24,7 @@ function Tweet(props) {
       name: props.userName,
       screenName: props.userUserName,
       date: props.tweetDate.substring(0, 10),
-      content: props.tweetContent,
+      content: props.tweetContentExtended,
       category: props.tweetCategory,
     });
 
@@ -55,13 +55,16 @@ function Tweet(props) {
             </p>
           </Col>
         </Row>
-        {props.tweetContent === null ? (
-          <p></p>
-        ) : (
-          props.tweetContent.map((text) => {
-            return <Card.Text className={styles.tweetText}>{text}</Card.Text>;
-          })
-        )}
+        {props.tweetContent &&
+          (typeof props.tweetContent === "string" ? (
+            <Card.Text className={styles.tweetText}>
+              {props.tweetContent}
+            </Card.Text>
+          ) : (
+            props.tweetContentExtended.map((text) => {
+              return <Card.Text className={styles.tweetText}>{text}</Card.Text>;
+            })
+          ))}
         <hr style={{ backgroundColor: "#d0f6e3", width: "100%" }} />
         <Button className={styles.readButton} onClick={handleReadTweet}>
           Read

@@ -12,26 +12,17 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   margin: 30px;
-// `;
-
-// const Grid = styled.div`
-//   display: grid;
-//   grid-template-columns: auto auto auto;
-//   max-width: 960px;
-// `;
-
 const MyCategorizedTweets = () => {
   const [tweets, setTweets] = useState();
 
-  useEffect(async () => {
-    await api.getAllTweets().then((res, req) => {
-      setTweets(res.data);
-    });
+  useEffect(() => {
+    const get = async () => {
+      await api.getAllTweets().then((res, req) => {
+        setTweets(res.data);
+      });
+    };
+
+    get();
   }, []);
 
   return (
@@ -49,7 +40,12 @@ const MyCategorizedTweets = () => {
                       userUserName={tweet.user_screen_name}
                       tweetCategory={tweet.tweet_organized_category}
                       tweetDate={tweet.tweet_organized_date}
-                      tweetContent={tweet.tweet_organized_content}
+                      tweetContent={
+                        tweet.tweet_organized_content
+                          ? tweet.tweet_organized_content[0]
+                          : tweet.tweet_organized_content
+                      }
+                      tweetContentExtended={tweet.tweet_organized_content}
                     />
                   </Col>
                 );
