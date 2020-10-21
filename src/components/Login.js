@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import api from "../api/index";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -11,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [notFound, setNotFound] = useState();
   const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -35,9 +37,11 @@ const Login = () => {
           if (res.data.length === 0) {
             setNotFound(true);
             setShowModal(true);
-          } else if (res.data[0].password === password) {
+          }
+          // SUCCESS
+          else if (res.data[0].password === password) {
             setNotFound(false);
-            console.log("success!");
+            history.push("/account");
           } else {
             setNotFound(true);
             setShowModal(true);
