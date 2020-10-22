@@ -48,6 +48,7 @@ function BiologyPage() {
                     key={tweetIDFormatted}
                     userName={element.user_name}
                     userUserName={element.user_screen_name}
+                    userImageUrl={element.user_image_url}
                     tweetCategory={element.tweet_organized_category}
                     tweetDate={element.tweet_organized_date}
                     tweetContent={

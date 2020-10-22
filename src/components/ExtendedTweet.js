@@ -9,6 +9,7 @@ import test_image from "../assets/images/test_image.png";
 function ExtendedTweet(props) {
   const [tweetName, setTweetName] = useState();
   const [tweetScreenName, setScreenName] = useState();
+  const [tweetImageUrl, setTweetImageUrl] = useState();
   const [tweetDate, setTweetDate] = useState();
   const [tweetContent, setTweetContent] = useState([]);
   const [tweetCategory, setTweetCategory] = useState();
@@ -16,6 +17,7 @@ function ExtendedTweet(props) {
   useEffect(() => {
     setTweetName(props.tweetContent.name);
     setScreenName(props.tweetContent.screenName);
+    setTweetImageUrl(props.tweetContent.userImageUrl);
     setTweetDate(props.tweetContent.date);
     setTweetContent(props.tweetContent.content);
     setTweetCategory(
@@ -32,7 +34,7 @@ function ExtendedTweet(props) {
             <Row className={styles.tweetHeader}>
               <Col>
                 <Card.Title>
-                  <img className={styles.userImage} src={test_image} />
+                  <img className={styles.userImage} src={tweetImageUrl} />
                   <p>{tweetName}</p>
                   <p>@{tweetScreenName}</p>
                 </Card.Title>

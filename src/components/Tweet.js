@@ -23,6 +23,7 @@ function Tweet(props) {
     setTweetContent({
       name: props.userName,
       screenName: props.userUserName,
+      userImageUrl: props.userImageUrl,
       date: props.tweetDate.substring(0, 10),
       content: props.tweetContentExtended,
       category: props.tweetCategory,
@@ -32,11 +33,11 @@ function Tweet(props) {
   }
 
   return (
-    <Card className={styles.tweetContainer}>
+    <Card className={styles.tweetContainer} key={props.key}>
       <Card.Body className={styles.tweetBody}>
         <Row className={styles.tweetHeader}>
           <Col style={{ textAlign: "center" }}>
-            <img className={styles.userImage} src={test_image} />
+            <img className={styles.userImage} src={props.userImageUrl} />
           </Col>
           <Col>
             <Card.Title>

@@ -38,6 +38,7 @@ const MyCategorizedTweets = () => {
                       key={tweet.id}
                       userName={tweet.user_name}
                       userUserName={tweet.user_screen_name}
+                      userImageUrl={tweet.user_image_url}
                       tweetCategory={tweet.tweet_organized_category}
                       tweetDate={tweet.tweet_organized_date}
                       tweetContent={
