@@ -6,6 +6,7 @@ import Tweet from "./Tweet";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import SearchBar from "./SearchBar";
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,10 +15,16 @@ const Wrapper = styled.div`
 
 const MyCategorizedTweets = () => {
   const [tweets, setTweets] = useState();
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     const get = async () => {
       await api.getAllTweets().then((res, req) => {
+        let tempTweets = [];
+        // res.data.forEach(tweet => {
+        //   if(tweet)
+        // })
+
         setTweets(res.data);
       });
     };
@@ -29,6 +36,7 @@ const MyCategorizedTweets = () => {
     <>
       <Wrapper>
         <Container>
+          <SearchBar />
           <Row>
             {tweets &&
               tweets.map((tweet) => {
