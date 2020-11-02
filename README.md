@@ -45,3 +45,7 @@ Twitter Bot:
 `source venv/bin/activate`
 
 `python -u bot.py`
+
+## Screenshots
+
+
