@@ -1,4 +1,5 @@
 # Twitter Organizer
+
 This project includes three repositories
 
 Front-End: https://github.com/gautiermarechal/twitter_organizer_front_end
@@ -8,17 +9,20 @@ Back-End: https://github.com/gautiermarechal/twitter_organizer_server
 Twitter Bot: https://github.com/gautiermarechal/twitter_organizer_bot
 
 ## Description
-Twitter Organizer is a twitter bot that will categorize educational tweets and threads under categories. 
 
-The goal of this project is to avoid users spending too much time scrolling on the app, and easily have access to valuable information in a structured way. 
+Twitter Organizer is a twitter bot that will categorize educational tweets and threads under categories.
+
+The goal of this project is to avoid users spending too much time scrolling on the app, and easily have access to valuable information in a structured way.
 
 ## Technology Used
-PERN stack: Postgresql, Express, React, Node.js 
+
+PERN stack: Postgresql, Express, React, Node.js
 
 For the bot: Python, Tweepy API
 
 ## Project Structure
-The project is divided into three main parts: 
+
+The project is divided into three main parts:
 
 1. Front-End
 2. Back-End, connected to Postgresql database
@@ -48,4 +52,10 @@ Twitter Bot:
 
 ## Screenshots
 
+(This is a beta version)
 
+![Home Page](/src/assets/screenshots/screenshot_0.png "Home Page - Twitter Organizer")
+
+![Categorized Tweets - Psychology](/src/assets/screenshots/screenshot_1.png "Categorized Tweets - Psychology")
+
+![Categories](/src/assets/screenshots/screenshot_2.png "Categories - Twitter Organizer")
