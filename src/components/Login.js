@@ -41,6 +41,7 @@ const Login = () => {
           // SUCCESS
           else if (res.data[0].password === password) {
             setNotFound(false);
+            localStorage.setItem("useremail", email);
             history.push("/account");
           } else {
             setNotFound(true);

@@ -16,6 +16,11 @@ import AccountHome from "./components/AccountHome";
 
 function App() {
   const [tweetContent, setTweetContent] = useState();
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState();
+
+  const handleLogInSession = () => {
+    setUserIsLoggedIn(true);
+  };
   return (
     <AppContext.Provider value={{ tweetContent, setTweetContent }}>
       <div className="App">

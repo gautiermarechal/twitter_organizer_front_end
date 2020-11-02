@@ -19,6 +19,8 @@ export const getAllTweets = () => api.get(`/tweets`);
 export const deleteTweet = (id) => api.delete(`/tweet-organized/${id}`);
 export const updateTweet = (id, payload) =>
   api.put(`/tweet-organized/${id}`, payload);
+export const bookmarkTweet = (userid, tweetid) =>
+  api.patch(`/tweets/bookmark/${userid}/${tweetid}`);
 
 const apis = {
   createUser,
@@ -33,6 +35,7 @@ const apis = {
   deleteTweet,
   updateTweet,
   getTweetByCategory,
+  bookmarkTweet,
 };
 
 export default apis;

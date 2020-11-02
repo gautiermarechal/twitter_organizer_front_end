@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import test_image from "../assets/images/test_image.png";
 import { useAppContext } from "../libs/contextLibs";
 import { useHistory } from "react-router-dom";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import api from "../api/index";
 
 function Tweet(props) {
   const [formattedDate, setFormattedDate] = useState();
@@ -31,6 +33,10 @@ function Tweet(props) {
 
     history.push("/extended");
   }
+
+  // const handleBookmarkTweet = async (userid, tweetid) => {
+  //   api.bookmarkTweet()
+  // };
 
   return (
     <Card className={styles.tweetContainer} key={props.key}>
@@ -67,9 +73,14 @@ function Tweet(props) {
             })
           ))}
         <hr style={{ backgroundColor: "#d0f6e3", width: "100%" }} />
-        <Button className={styles.readButton} onClick={handleReadTweet}>
-          Read
-        </Button>
+        <div className={styles.buttonsTweetContainer}>
+          <Button className={styles.readButton} onClick={handleReadTweet}>
+            Read
+          </Button>
+          <Button className={styles.bookmarkButton}>
+            <BsFillBookmarkFill />
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

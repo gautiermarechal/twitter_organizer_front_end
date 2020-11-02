@@ -25,9 +25,23 @@
   border-radius: 50px !important;
   background-color: #16212b !important;
   border-color: #d0f6e3 !important;
+  width: 100%;
 }
 
 .readButton:hover {
+  background-color: #d0f6e3 !important;
+  color: #16212b !important;
+}
+
+.bookmarkButton {
+  border-radius: 50px !important;
+  background-color: #16212b !important;
+  border-color: #d0f6e3 !important;
+  width: 25%;
+  margin-left: 10px;
+}
+
+.bookmarkButton:hover {
   background-color: #d0f6e3 !important;
   color: #16212b !important;
 }
@@ -39,4 +53,8 @@
   margin-right: 10px;
   color: #d0f6e3 !important;
   text-align: left !important;
+}
+
+.buttonsTweetContainer {
+  display: flex;
 }

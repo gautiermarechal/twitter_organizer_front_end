@@ -123,7 +123,7 @@ function SignUp() {
         is_twitter_logged_in: false,
       });
 
-      history.push("/sign-up-successful");
+      history.push("/sign-up-successfull");
     }
   };
 
