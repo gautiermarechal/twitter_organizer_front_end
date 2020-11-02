@@ -13,22 +13,26 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const MyCategorizedTweets = () => {
-  const [tweets, setTweets] = useState();
-  const [currentUser, setCurrentUser] = useState();
+const MyCategorizedTweets = ({ currentUser }) => {
+  const [tweets, setTweets] = useState([]);
+  const [tweetsToDisplay, setTweetsToDisplay] = useState([]);
 
   useEffect(() => {
+    console.log(currentUser);
+    let tweets = [];
+    let tweetsToDisplay = [];
     const get = async () => {
-      await api.getAllTweets().then((res, req) => {
-        let tempTweets = [];
-        // res.data.forEach(tweet => {
-        //   if(tweet)
-        // })
-
-        setTweets(res.data);
-      });
+      tweets = await api.getAllTweets();
+      setTweets(tweets.data);
+      // tweets.data.forEach((tweet) => {
+      //   console.log("LOOP");
+      //   currentUser.tweets_bookmarked.forEach((tweetBookmarkedID) => {
+      //     if (tweetBookmarkedID === tweet.id) {
+      //       tweetsToDisplay.push(tweet);
+      //     }
+      //   });
+      // });
     };
-
     get();
   }, []);
 
@@ -38,8 +42,8 @@ const MyCategorizedTweets = () => {
         <Container>
           <SearchBar />
           <Row>
-            {tweets &&
-              tweets.map((tweet) => {
+            {tweetsToDisplay &&
+              tweetsToDisplay.map((tweet) => {
                 return (
                   <Col lg={true} lg={4} style={{ marginTop: "20px" }}>
                     <Tweet

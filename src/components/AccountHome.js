@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AccountHome.module.css";
 import MyCategorizedTweets from "./MyCategorizedTweets";
 import MyCategories from "./MyCategories";
+import api from "../api/index";
 
 const AccountHome = () => {
   const [section, setSection] = useState("tweet-section");
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    let user = {};
+    const get = async () => {
+      user = await api.getUserByEmail(localStorage.getItem("useremail"));
+      setCurrentUser(user.data[0]);
+    };
+
+    get();
+  }, []);
 
   const handleTweetSection = () => {
     if (section === "categories-section") {
@@ -30,7 +42,7 @@ const AccountHome = () => {
           </li>
         </ol>
         {section === "tweet-section" ? (
-          <MyCategorizedTweets />
+          <MyCategorizedTweets currentUser={currentUser} />
         ) : (
           <MyCategories />
         )}
