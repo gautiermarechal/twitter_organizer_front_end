@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import { AppContext } from "./libs/contextLibs";
+
+//CONTEXT IMPORTS
+import { TweetContextProvider } from "./libs/tweetContext";
 
 //COMPONENTS IMPORTS---------------------------
 import NavigationBar from "./components/NavigationBar";
@@ -15,14 +17,8 @@ import AccountHome from "./components/AccountHome";
 //---------------------------------------------
 
 function App() {
-  const [tweetContent, setTweetContent] = useState();
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState();
-
-  const handleLogInSession = () => {
-    setUserIsLoggedIn(true);
-  };
   return (
-    <AppContext.Provider value={{ tweetContent, setTweetContent }}>
+    <TweetContextProvider>
       <div className="App">
         <Router>
           <NavigationBar />
@@ -33,7 +29,7 @@ function App() {
             <BiologyPage />
           </Route>
           <Route path="/extended">
-            <ExtendedTweet tweetContent={tweetContent} />
+            <ExtendedTweet />
           </Route>
           <Route path="/sign-up">
             <SignUp />
@@ -49,7 +45,7 @@ function App() {
           </Route>
         </Router>
       </div>
-    </AppContext.Provider>
+    </TweetContextProvider>
   );
 }
 

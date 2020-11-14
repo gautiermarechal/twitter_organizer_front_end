@@ -5,24 +5,27 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import test_image from "../assets/images/test_image.png";
+import { useTweetContext } from "../libs/tweetContext";
 
-function ExtendedTweet(props) {
+function ExtendedTweet() {
+  const { tweetContent } = useTweetContext();
+
   const [tweetName, setTweetName] = useState();
   const [tweetScreenName, setScreenName] = useState();
   const [tweetImageUrl, setTweetImageUrl] = useState();
   const [tweetDate, setTweetDate] = useState();
-  const [tweetContent, setTweetContent] = useState([]);
+  const [tweetStatus, setTweetStatus] = useState([]);
   const [tweetCategory, setTweetCategory] = useState();
 
   useEffect(() => {
-    setTweetName(props.tweetContent.name);
-    setScreenName(props.tweetContent.screenName);
-    setTweetImageUrl(props.tweetContent.userImageUrl);
-    setTweetDate(props.tweetContent.date);
-    setTweetContent(props.tweetContent.content);
+    setTweetName(tweetContent.name);
+    setScreenName(tweetContent.screenName);
+    setTweetImageUrl(tweetContent.userImageUrl);
+    setTweetDate(tweetContent.date);
+    setTweetStatus(tweetContent.content);
     setTweetCategory(
-      props.tweetContent.category.charAt(0).toUpperCase() +
-        props.tweetContent.category.slice(1)
+      tweetContent.category.charAt(0).toUpperCase() +
+        tweetContent.category.slice(1)
     );
   }, []);
 
@@ -42,7 +45,7 @@ function ExtendedTweet(props) {
               </Col>
             </Row>
             <Card.Text className={styles.tweetText}>
-              {tweetContent.map((text) => {
+              {tweetStatus.map((text) => {
                 return <p>{text}</p>;
               })}
             </Card.Text>

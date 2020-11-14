@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import test_image from "../assets/images/test_image.png";
-import { useAppContext } from "../libs/contextLibs";
+import { useTweetContext } from "../libs/tweetContext";
 import { useHistory } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import api from "../api/index";
@@ -13,7 +13,7 @@ import api from "../api/index";
 function Tweet(props) {
   const [formattedDate, setFormattedDate] = useState();
   const [url, setUrl] = useState();
-  const { setTweetContent } = useAppContext();
+  const { handleSetTweetContent } = useTweetContext();
   const history = useHistory();
   useEffect(() => {
     setFormattedDate(props.tweetDate.substring(0, 10));
@@ -22,7 +22,7 @@ function Tweet(props) {
   }, []);
 
   function handleReadTweet() {
-    setTweetContent({
+    handleSetTweetContent({
       name: props.userName,
       screenName: props.userUserName,
       userImageUrl: props.userImageUrl,
