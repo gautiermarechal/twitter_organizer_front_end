@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { receiveTweetsByCategory } from "../libs/actions/TweetsActions";
 import styles from "./BiologyPage.module.css";
 import SearchBar from "./SearchBar";
 import Container from "react-bootstrap/Container";
@@ -9,15 +11,19 @@ import api from "../api/index";
 
 function BiologyPage() {
   const [biologyTweets, setBiologyTweets] = useState([]);
-  const newLine = <br />;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function get() {
-      await api.getTweetByCategory("psychology").then((res) => {
-        console.log(res.data);
-        setBiologyTweets(res.data);
-        console.log(res);
-      });
+    function get() {
+      api
+        .getTweetByCategory("psychology")
+        .then((res) => {
+          console.log(res.data);
+          setBiologyTweets(res.data);
+          console.log(res);
+          dispatch(receiveTweetsByCategory(res.data));
+        })
+        .catch();
     }
     get();
   }, []);

@@ -4,13 +4,15 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import test_image from "../assets/images/test_image.png";
 import { useTweetContext } from "../libs/tweetContext";
 import { useHistory } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { getExtendedTweet } from "../libs/actions/TweetsActions";
 import api from "../api/index";
 
 function Tweet(props) {
+  const dispatch = useDispatch();
   const [formattedDate, setFormattedDate] = useState();
   const [url, setUrl] = useState();
   const { handleSetTweetContent } = useTweetContext();
@@ -30,7 +32,16 @@ function Tweet(props) {
       content: props.tweetContentExtended,
       category: props.tweetCategory,
     });
-
+    dispatch(
+      getExtendedTweet({
+        name: props.userName,
+        screenName: props.userUserName,
+        userImageUrl: props.userImageUrl,
+        date: props.tweetDate.substring(0, 10),
+        content: props.tweetContentExtended,
+        category: props.tweetCategory,
+      })
+    );
     history.push("/extended");
   }
 
