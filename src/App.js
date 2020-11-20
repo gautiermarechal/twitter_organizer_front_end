@@ -8,7 +8,7 @@ import { TweetContextProvider } from "./libs/tweetContext";
 //COMPONENTS IMPORTS---------------------------
 import NavigationBar from "./components/NavigationBar";
 import HomePage from "./components/HomePage";
-import BiologyPage from "./components/BiologyPage";
+import CategoryPage from "./components/CategoryPage";
 import ExtendedTweet from "./components/ExtendedTweet";
 import SignUp from "./components/SignUp";
 import { SignUpSuccessful } from "./components/SignUp";
@@ -25,8 +25,8 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path="/biology">
-            <BiologyPage />
+          <Route path="/:categoryId">
+            <CategoryPage />
           </Route>
           <Route path="/extended">
             <ExtendedTweet />

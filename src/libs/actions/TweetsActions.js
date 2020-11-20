@@ -12,6 +12,11 @@ export const receiveTweetsByCategory = (data) => ({
   data,
 });
 
+export const setCurrentCategory = (data) => ({
+  type: "SET_CURRENT_CATEGORY",
+  data,
+});
+
 //Extended Tweet actions
 export const getExtendedTweet = (data) => ({
   type: "GET_EXTENDED_TWEET",

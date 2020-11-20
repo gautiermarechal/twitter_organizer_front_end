@@ -16,6 +16,11 @@ const tweetsReducer = (state = initialState, action) => {
         ...state,
         extendedTweet: action.data,
       };
+    case "SET_CURRENT_CATEGORY":
+      return {
+        ...state,
+        currentCategory: action.data,
+      };
     default:
       return state;
   }
