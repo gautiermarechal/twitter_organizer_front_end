@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { useTweetContext } from "../libs/tweetContext";
 import { useHistory, useParams } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
@@ -19,7 +18,6 @@ function Tweet(props) {
   const tweetId = props.id;
   const [formattedDate, setFormattedDate] = useState();
   const [url, setUrl] = useState();
-  const { handleSetTweetContent } = useTweetContext();
   const history = useHistory();
   useEffect(() => {
     setFormattedDate(props.tweetDate.substring(0, 10));
@@ -28,14 +26,6 @@ function Tweet(props) {
 
   function handleReadTweet() {
     dispatch(getExtendedTweetId(tweetId));
-    handleSetTweetContent({
-      name: props.userName,
-      screenName: props.userUserName,
-      userImageUrl: props.userImageUrl,
-      date: props.tweetDate.substring(0, 10),
-      content: props.tweetContentExtended,
-      category: props.tweetCategory,
-    });
 
     history.push(`/extended/${tweetId}`);
   }
