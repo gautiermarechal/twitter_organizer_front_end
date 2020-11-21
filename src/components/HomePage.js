@@ -30,7 +30,7 @@ function HomePage() {
       </Row>
       <Row className={styles.row1} float="center">
         <Col md>
-          <Link to="/biology">
+          <Link to="/category/biology">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#0DC167", borderColor: "#0DC167" }}
@@ -40,7 +40,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/philosophy">
+          <Link to="/category/philosophy">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#2A7DBC", borderColor: "#2A7DBC" }}
@@ -50,7 +50,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/economics">
+          <Link to="/category/economics">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#91000C", borderColor: "#91000C" }}
@@ -60,7 +60,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/bitcoin">
+          <Link to="/category/bitcoin">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#F7931A", borderColor: "#F7931A" }}
@@ -72,7 +72,7 @@ function HomePage() {
       </Row>
       <Row className={styles.row1} float="center">
         <Col md>
-          <Link to="/society">
+          <Link to="/category/society">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#046C7E", borderColor: "#046C7E" }}
@@ -82,7 +82,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/health">
+          <Link to="/category/health">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#069055", borderColor: "#069055" }}
@@ -92,7 +92,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/psychology">
+          <Link to="/category/psychology">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#B620E0", borderColor: "#B620E0" }}
@@ -102,7 +102,7 @@ function HomePage() {
           </Link>
         </Col>
         <Col md>
-          <Link to="/computer-science">
+          <Link to="/category/computer-science">
             <Button
               className={styles.gridButton}
               style={{ backgroundColor: "#7127E7", borderColor: "#7127E7" }}

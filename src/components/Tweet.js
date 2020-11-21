@@ -1,18 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Tweet.module.css";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useTweetContext } from "../libs/tweetContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { getExtendedTweet } from "../libs/actions/TweetsActions";
+import {
+  getExtendedTweet,
+  getExtendedTweetId,
+} from "../libs/actions/ExtendedTweetActions";
 import api from "../api/index";
 
 function Tweet(props) {
   const dispatch = useDispatch();
+  const tweetId = props.id;
   const [formattedDate, setFormattedDate] = useState();
   const [url, setUrl] = useState();
   const { handleSetTweetContent } = useTweetContext();
@@ -20,10 +24,10 @@ function Tweet(props) {
   useEffect(() => {
     setFormattedDate(props.tweetDate.substring(0, 10));
     setUrl("/" + props.key);
-    console.log(props.key);
   }, []);
 
   function handleReadTweet() {
+    dispatch(getExtendedTweetId(tweetId));
     handleSetTweetContent({
       name: props.userName,
       screenName: props.userUserName,
@@ -32,17 +36,8 @@ function Tweet(props) {
       content: props.tweetContentExtended,
       category: props.tweetCategory,
     });
-    dispatch(
-      getExtendedTweet({
-        name: props.userName,
-        screenName: props.userUserName,
-        userImageUrl: props.userImageUrl,
-        date: props.tweetDate.substring(0, 10),
-        content: props.tweetContentExtended,
-        category: props.tweetCategory,
-      })
-    );
-    history.push("/extended");
+
+    history.push(`/extended/${tweetId}`);
   }
 
   // const handleBookmarkTweet = async (userid, tweetid) => {
@@ -67,7 +62,7 @@ function Tweet(props) {
             </Card.Title>
           </Col>
           <Col>
-            {props.tweetCategory}{" "}
+            {props.tweetCategory}
             <p style={{ fontSize: "12px", marginTop: "5px" }}>
               {formattedDate}
             </p>

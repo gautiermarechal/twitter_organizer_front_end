@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   receiveTweetsByCategory,
   setCurrentCategory,
 } from "../libs/actions/TweetsActions";
-import styles from "./BiologyPage.module.css";
 import SearchBar from "./SearchBar";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Tweet from "./Tweet";
 import api from "../api/index";
 import { useParams } from "react-router-dom";
@@ -16,7 +13,6 @@ import styled from "styled-components";
 import { COLORS } from "../constants/colors";
 
 function CategoryPage() {
-  const [biologyTweets, setBiologyTweets] = useState([]);
   const dispatch = useDispatch();
   const currentCategory = useParams().categoryId;
   const currentCategoryTitle =
@@ -28,8 +24,6 @@ function CategoryPage() {
         .getTweetByCategory(currentCategory)
         .then((res) => {
           console.log(res.data);
-          setBiologyTweets(res.data);
-          console.log(res);
           dispatch(receiveTweetsByCategory(res.data));
           dispatch(setCurrentCategory(currentCategory));
         })
@@ -37,6 +31,8 @@ function CategoryPage() {
     }
     get();
   }, []);
+
+  const tweets = useSelector((state) => state.tweets.tweetsByCategory.data);
 
   const TitleContainer = styled.div`
     display: flex;
@@ -71,8 +67,8 @@ function CategoryPage() {
           <SearchBar />
         </SearchBarContainer>
         <MainGridContainer>
-          {biologyTweets &&
-            biologyTweets.map((element) => {
+          {tweets &&
+            tweets.map((element) => {
               const tweetIDFormatted =
                 `${currentCategory}_` + element.tweet_organized_id;
 
@@ -81,6 +77,7 @@ function CategoryPage() {
               return (
                 <Tweet
                   key={tweetIDFormatted}
+                  id={element.tweet_organized_id}
                   userName={element.user_name}
                   userUserName={element.user_screen_name}
                   userImageUrl={element.user_image_url}

@@ -1,20 +1,30 @@
 const initialState = {
   currentCategory: "",
-  tweetsByCategory: [],
-  extendedTweet: {},
+  tweetsByCategory: { status: "idle", data: [] },
+  extendedTweet: {
+    status: "idle",
+    id: "",
+    data: {},
+  },
 };
 
 const tweetsReducer = (state = initialState, action) => {
   switch (action.type) {
+    //ALL TWEETS BY CATEGORY REDUCERS
+    case "REQUEST_TWEETS_BY_CATEGORY":
+      return {
+        ...state,
+        tweetsByCategory: { ...this, status: "requested" },
+      };
     case "RECEIVE_TWEETS_BY_CATEGORY":
       return {
         ...state,
-        tweetsByCategory: action.data,
+        tweetsByCategory: { ...this, status: "received", data: action.data },
       };
-    case "GET_EXTENDED_TWEET":
+    case "ERROR_TWEETS_BY_CATEGORY":
       return {
         ...state,
-        extendedTweet: action.data,
+        tweetsByCategory: { ...this, status: "error" },
       };
     case "SET_CURRENT_CATEGORY":
       return {

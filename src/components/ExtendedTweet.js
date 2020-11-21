@@ -4,55 +4,64 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import test_image from "../assets/images/test_image.png";
-import { useTweetContext } from "../libs/tweetContext";
+import { useDispatch, useSelector } from "react-redux";
+import api from "../api/index";
+import {
+  requestExtendedTweet,
+  getExtendedTweet,
+} from "../libs/actions/ExtendedTweetActions";
+import { useParams } from "react-router-dom";
 
 function ExtendedTweet() {
-  const { tweetContent } = useTweetContext();
-
-  const [tweetName, setTweetName] = useState();
-  const [tweetScreenName, setScreenName] = useState();
-  const [tweetImageUrl, setTweetImageUrl] = useState();
-  const [tweetDate, setTweetDate] = useState();
-  const [tweetStatus, setTweetStatus] = useState([]);
-  const [tweetCategory, setTweetCategory] = useState();
+  const dispatch = useDispatch();
+  const tweetId = useParams().id;
 
   useEffect(() => {
-    setTweetName(tweetContent.name);
-    setScreenName(tweetContent.screenName);
-    setTweetImageUrl(tweetContent.userImageUrl);
-    setTweetDate(tweetContent.date);
-    setTweetStatus(tweetContent.content);
-    setTweetCategory(
-      tweetContent.category.charAt(0).toUpperCase() +
-        tweetContent.category.slice(1)
-    );
-  }, []);
+    dispatch(requestExtendedTweet());
+    if (tweetId === "") {
+      return;
+    }
+    api.getTweetByID(tweetId).then((res) => {
+      dispatch(getExtendedTweet(res.data));
+    });
+  }, [tweetId]);
+
+  const extendedTweetObj = useSelector((state) => state.extendedTweet.data[0]);
+
+  console.log(extendedTweetObj);
 
   return (
-    <Container className={styles.mainContainer}>
-      <article className={styles.articleContainer}>
-        <Card className={styles.tweetContainer}>
-          <Card.Body>
-            <Row className={styles.tweetHeader}>
-              <Col>
-                <Card.Title>
-                  <img className={styles.userImage} src={tweetImageUrl} />
-                  <p>{tweetName}</p>
-                  <p>@{tweetScreenName}</p>
-                </Card.Title>
-                {tweetCategory} <p>{tweetDate}</p>
-              </Col>
-            </Row>
-            <Card.Text className={styles.tweetText}>
-              {tweetStatus.map((text) => {
-                return <p>{text}</p>;
-              })}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </article>
-    </Container>
+    <>
+      {extendedTweetObj ? (
+        <Container className={styles.mainContainer}>
+          <article className={styles.articleContainer}>
+            <Card className={styles.tweetContainer}>
+              <Card.Body>
+                <Row className={styles.tweetHeader}>
+                  <Col>
+                    <Card.Title>
+                      <img
+                        className={styles.userImage}
+                        src={extendedTweetObj.user_image_url}
+                      />
+                      <p>{extendedTweetObj.user_name}</p>
+                      <p>@{extendedTweetObj.user_screen_name}</p>
+                    </Card.Title>
+                    {extendedTweetObj.tweet_organized_category}
+                    <p>{extendedTweetObj.tweet_organized_date}</p>
+                  </Col>
+                </Row>
+                <Card.Text className={styles.tweetText}>
+                  {extendedTweetObj.tweet_organized_content.map((text) => {
+                    return <p>{text}</p>;
+                  })}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </article>
+        </Container>
+      ) : null}
+    </>
   );
 }
 
