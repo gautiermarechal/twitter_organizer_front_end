@@ -5,6 +5,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import api from "../api/index";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  errorUserLogIn,
+  requestUserLogIn,
+  userLogIn,
+} from "../libs/actions/CurrentUserActions";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -13,6 +19,9 @@ const Login = () => {
   const [notFound, setNotFound] = useState();
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
+
+  //REDUX
+  const dispatch = useDispatch();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -29,6 +38,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(requestUserLogIn());
     if (emailIsValid) {
       await api
         .getUserByEmail(email)
@@ -37,13 +47,16 @@ const Login = () => {
           if (res.data.length === 0) {
             setNotFound(true);
             setShowModal(true);
+            dispatch(errorUserLogIn());
           }
           // SUCCESS
           else if (res.data[0].password === password) {
+            dispatch(userLogIn(res.data[0]));
             setNotFound(false);
             localStorage.setItem("useremail", email);
             history.push("/account");
           } else {
+            dispatch(errorUserLogIn());
             setNotFound(true);
             setShowModal(true);
           }

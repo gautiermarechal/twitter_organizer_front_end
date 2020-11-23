@@ -11,7 +11,6 @@ import {
   getExtendedTweet,
   getExtendedTweetId,
 } from "../libs/actions/ExtendedTweetActions";
-import api from "../api/index";
 
 function Tweet(props) {
   const dispatch = useDispatch();
