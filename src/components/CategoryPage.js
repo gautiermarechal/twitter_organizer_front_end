@@ -23,7 +23,6 @@ function CategoryPage() {
       api
         .getTweetByCategory(currentCategory)
         .then((res) => {
-          console.log(res.data);
           dispatch(receiveTweetsByCategory(res.data));
           dispatch(setCurrentCategory(currentCategory));
         })
