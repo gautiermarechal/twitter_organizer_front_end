@@ -11,9 +11,11 @@ import SignUp from "./components/SignUp";
 import { SignUpSuccessful } from "./components/SignUp";
 import Login from "./components/Login";
 import AccountHome from "./components/AccountHome";
+import useFetchCurrentUser from "./libs/custom-hooks/useFetchCurrentUser";
 //---------------------------------------------
 
 function App() {
+  useFetchCurrentUser();
   return (
     <div className="App">
       <Router>

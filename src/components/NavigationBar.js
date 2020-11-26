@@ -4,8 +4,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { MdAccountCircle } from "react-icons/md";
 
 function NavigationBar() {
+  const currentUser = useSelector((state) => state.currentUser);
   return (
     <Navbar
       className={styles.navBarContainer}
@@ -14,7 +17,9 @@ function NavigationBar() {
       variant="dark"
     >
       <Link to="/">
-        <Navbar.Brand>Twitter Organizer</Navbar.Brand>
+        <Navbar.Brand className={styles.mainTitle}>
+          Twitter Organizer
+        </Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse
@@ -32,12 +37,22 @@ function NavigationBar() {
               Subjects
             </Button>
           </Nav.Link>
-          <Nav.Link className={styles.navItem}>
-            <Link to="sign-up">Sign Up</Link>
-          </Nav.Link>
-          <Nav.Link className={styles.navItem}>
-            <Link to="login">Login</Link>
-          </Nav.Link>
+          {currentUser.status === "loggedIn" ? (
+            <Nav.Link className={styles.navItem}>
+              <Link to="account">
+                <MdAccountCircle className={styles.icon} size={32} />
+              </Link>
+            </Nav.Link>
+          ) : (
+            <>
+              <Nav.Link className={styles.navItem}>
+                <Link to="sign-up">Sign Up</Link>
+              </Nav.Link>
+              <Nav.Link className={styles.navItem}>
+                <Link to="login">Login</Link>
+              </Nav.Link>
+            </>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

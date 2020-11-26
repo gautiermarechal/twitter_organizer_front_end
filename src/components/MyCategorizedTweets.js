@@ -24,14 +24,6 @@ const MyCategorizedTweets = ({ currentUser }) => {
     const get = async () => {
       tweets = await api.getAllTweets();
       setTweets(tweets.data);
-      // tweets.data.forEach((tweet) => {
-      //   console.log("LOOP");
-      //   currentUser.tweets_bookmarked.forEach((tweetBookmarkedID) => {
-      //     if (tweetBookmarkedID === tweet.id) {
-      //       tweetsToDisplay.push(tweet);
-      //     }
-      //   });
-      // });
     };
     get();
   }, []);

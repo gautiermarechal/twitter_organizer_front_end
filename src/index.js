@@ -9,11 +9,13 @@ import { Provider } from "react-redux";
 import tweetsReducer from "./libs/reducers/tweetsReducer";
 import currentUserReducer from "./libs/reducers/currentUserReducer";
 import extendedTweetReducer from "./libs/reducers/extendedTweetReducer";
+import categorizedTweetsReducer from "./libs/reducers/categorizedTweetsReducer";
 
 const reducer = combineReducers({
   tweets: tweetsReducer,
   currentUser: currentUserReducer,
   extendedTweet: extendedTweetReducer,
+  categorizedTweets: categorizedTweetsReducer,
 });
 
 const store = createStore(

@@ -1,12 +1,12 @@
 .collapseContainer {
   vertical-align: middle;
-  background-color: #076a5d;
+  background-color: #5cdb95;
   border-radius: 7px;
 }
 
 .navBarContainer {
   height: 70px;
-  background-color: #076a5d;
+  background-color: #5cdb95;
 }
 
 .navItemsContainer {
@@ -16,17 +16,25 @@
 
 .navItem {
   margin-top: 12px;
+  color: #05386b;
 }
 
 .navItemButton {
-  background-color: #076a5d !important;
-  color: #d0f6e3 !important;
+  background-color: #5cdb95 !important;
+  color: #05386b !important;
   border-radius: 25px !important;
-  border-color: #d0f6e3 !important;
-  border-width: 2px !important;
+  border-style: none !important;
 }
 
 .navItemButton:hover {
   background-color: #d0f6e3 !important;
-  color: #076a5d !important;
+  color: #05386b !important;
+}
+
+.icon {
+  fill: white;
+}
+
+.mainTitle {
+  color: #05386b;
 }
