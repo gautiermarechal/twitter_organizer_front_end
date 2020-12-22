@@ -31,7 +31,6 @@ const MyCategorizedTweets = ({ currentUser }) => {
     <>
       <Wrapper>
         <Container>
-          <SearchBar />
           <Row>
             {tweetsToDisplay &&
               tweetsToDisplay.map((tweet) => {

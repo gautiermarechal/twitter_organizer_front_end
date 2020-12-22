@@ -25,27 +25,31 @@ const AccountHome = () => {
     setCurrentPage(params);
   }, []);
 
+  const handleCurrentPage = (id) => {
+    setCurrentPage(id);
+  };
+
   return (
     <>
       <MainContainer>
         <MainBreadCrumb>
-          <MenuItem>
-            <h2
-              onClick={() => {
-                history.push("/account/my-categorized-tweets");
-              }}
-            >
-              My Categorized Tweets
-            </h2>
+          <MenuItem
+            onClick={() => {
+              history.push("/account/my-categorized-tweets");
+              handleCurrentPage("my-categorized-tweets");
+            }}
+            currentPage={currentPage === "my-categorized-tweets" ? true : false}
+          >
+            <h2>My Categorized Tweets</h2>
           </MenuItem>
-          <MenuItem>
-            <h2
-              onClick={() => {
-                history.push("/account/my-categories");
-              }}
-            >
-              My categories
-            </h2>
+          <MenuItem
+            onClick={() => {
+              history.push("/account/my-categories");
+              handleCurrentPage("my-categories");
+            }}
+            currentPage={currentPage === "my-categories" ? true : false}
+          >
+            <h2>My categories</h2>
           </MenuItem>
         </MainBreadCrumb>
         {section === "tweet-section" ? (
@@ -79,8 +83,10 @@ const MenuItem = styled.button`
   background-color: transparent;
   border-style: none;
   color: white;
-  border-bottom: solid transparent 1px;
+  border-bottom: solid
+    ${(props) => (props.currentPage ? "white" : "transparent")} 1px;
   transition: 0.2s;
+  outline: none !important;
   &:hover {
     border-bottom: solid white 1px;
   }
