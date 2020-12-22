@@ -12,6 +12,8 @@ import { SignUpSuccessful } from "./components/SignUp";
 import Login from "./components/Login";
 import AccountHome from "./components/AccountHome";
 import useFetchCurrentUser from "./libs/custom-hooks/useFetchCurrentUser";
+import MyCategorizedTweets from "./components/MyCategorizedTweets";
+import MyCategories from "./components/MyCategories";
 //---------------------------------------------
 
 function App() {
@@ -37,6 +39,12 @@ function App() {
         </Route>
         <Route path="/account">
           <AccountHome />
+        </Route>
+        <Route path="/account/my-categorized-tweets">
+          <MyCategorizedTweets />
+        </Route>
+        <Route path="/account/my-categories">
+          <MyCategories />
         </Route>
         <Route path="/category/:categoryId">
           <CategoryPage />

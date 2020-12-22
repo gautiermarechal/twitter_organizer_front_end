@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./AccountHome.module.css";
 import styled from "styled-components";
 import api from "../api/index";
 import Tweet from "./Tweet";

@@ -11,11 +11,11 @@
 
 .navItemsContainer {
   margin-left: auto;
-  vertical-align: middle;
+  display: flex !important;
+  align-items: center;
 }
 
 .navItem {
-  margin-top: 12px;
   color: #05386b;
 }
 

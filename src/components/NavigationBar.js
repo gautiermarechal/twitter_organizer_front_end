@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdAccountCircle } from "react-icons/md";
+import SearchBar from "./SearchBar";
 
 function NavigationBar() {
   const currentUser = useSelector((state) => state.currentUser);
@@ -28,21 +29,33 @@ function NavigationBar() {
       >
         <Nav id="responsive-navbar-nav" className={styles.navItemsContainer}>
           <Nav.Link>
-            <Button size="lg" className={styles.navItemButton}>
-              Search
-            </Button>
+            <SearchBar />
           </Nav.Link>
           <Nav.Link>
             <Button size="lg" className={styles.navItemButton}>
-              Subjects
+              Categories
             </Button>
           </Nav.Link>
           {currentUser.status === "loggedIn" ? (
-            <Nav.Link className={styles.navItem}>
-              <Link to="account">
-                <MdAccountCircle className={styles.icon} size={32} />
-              </Link>
-            </Nav.Link>
+            <>
+              <Nav.Link className={styles.navItem}>
+                <Link to="account">
+                  <MdAccountCircle className={styles.icon} size={32} />
+                </Link>
+              </Nav.Link>
+              <Nav.Link className={styles.navItem}>
+                <Button
+                  size="lg"
+                  className={styles.navItemButton}
+                  onClick={() => {
+                    localStorage.clear();
+                    window.location.reload();
+                  }}
+                >
+                  Logout
+                </Button>
+              </Nav.Link>
+            </>
           ) : (
             <>
               <Nav.Link className={styles.navItem}>
