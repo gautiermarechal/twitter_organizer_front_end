@@ -10,12 +10,14 @@ import tweetsReducer from "./libs/reducers/tweetsReducer";
 import currentUserReducer from "./libs/reducers/currentUserReducer";
 import extendedTweetReducer from "./libs/reducers/extendedTweetReducer";
 import categorizedTweetsReducer from "./libs/reducers/categorizedTweetsReducer";
+import bookmarkedTweetsReducer from "./libs/reducers/bookmarkedTweets";
 
 const reducer = combineReducers({
   tweets: tweetsReducer,
   currentUser: currentUserReducer,
   extendedTweet: extendedTweetReducer,
   categorizedTweets: categorizedTweetsReducer,
+  bookmarkedTweets: bookmarkedTweetsReducer,
 });
 
 const store = createStore(

@@ -21,6 +21,8 @@ export const updateTweet = (id, payload) =>
   api.put(`/tweet-organized/${id}`, payload);
 export const bookmarkTweet = (userid, tweetid) =>
   api.patch(`/tweets/bookmark/${userid}/${tweetid}`);
+export const getBookmarkedTweets = (userid) =>
+  api.get(`/tweets/bookmark/${userid}`);
 
 const apis = {
   createUser,
@@ -36,6 +38,7 @@ const apis = {
   updateTweet,
   getTweetByCategory,
   bookmarkTweet,
+  getBookmarkedTweets,
 };
 
 export default apis;

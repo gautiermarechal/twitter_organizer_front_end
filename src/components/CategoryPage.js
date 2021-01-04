@@ -11,6 +11,7 @@ import api from "../api/index";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS } from "../constants/colors";
+import TweetsGrid from "./TweetsGrid";
 
 function CategoryPage() {
   const dispatch = useDispatch();
@@ -50,12 +51,6 @@ function CategoryPage() {
     height: 200px;
   `;
 
-  const MainGridContainer = styled.div`
-    display: grid;
-    grid-template-columns: auto auto auto;
-    width: 100%;
-  `;
-
   return (
     <>
       <TitleContainer>
@@ -65,33 +60,7 @@ function CategoryPage() {
         <SearchBarContainer>
           <SearchBar />
         </SearchBarContainer>
-        <MainGridContainer>
-          {tweets &&
-            tweets.map((element) => {
-              const tweetIDFormatted =
-                `${currentCategory}_` + element.tweet_organized_id;
-
-              console.log(element.tweet_organized_content);
-
-              return (
-                <Tweet
-                  key={tweetIDFormatted}
-                  id={element.tweet_organized_id}
-                  userName={element.user_name}
-                  userUserName={element.user_screen_name}
-                  userImageUrl={element.user_image_url}
-                  tweetCategory={element.tweet_organized_category}
-                  tweetDate={element.tweet_organized_date}
-                  tweetContent={
-                    element.tweet_organized_content
-                      ? element.tweet_organized_content[0]
-                      : element.tweet_organized_content
-                  }
-                  tweetContentExtended={element.tweet_organized_content}
-                />
-              );
-            })}
-        </MainGridContainer>
+        <TweetsGrid tweets={tweets} />
       </Container>
     </>
   );

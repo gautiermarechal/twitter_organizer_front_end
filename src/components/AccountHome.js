@@ -10,7 +10,7 @@ const AccountHome = () => {
   const [section, setSection] = useState("tweet-section");
   const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
-  const [currentPage, setCurrentPage] = useState();
+  const [currentPage, setCurrentPage] = useState("");
   const params = useParams();
 
   useEffect(() => {
@@ -21,8 +21,6 @@ const AccountHome = () => {
     };
 
     get();
-
-    setCurrentPage(params);
   }, []);
 
   const handleCurrentPage = (id) => {
@@ -33,6 +31,15 @@ const AccountHome = () => {
     <>
       <MainContainer>
         <MainBreadCrumb>
+          <MenuItem
+            onClick={() => {
+              history.push("/account/tweets-bookmarked");
+              handleCurrentPage("tweets-bookmarked");
+            }}
+            currentPage={currentPage === "tweets-bookmarked" ? true : false}
+          >
+            <h2>Tweets Bookmarked</h2>
+          </MenuItem>
           <MenuItem
             onClick={() => {
               history.push("/account/my-categorized-tweets");
@@ -52,11 +59,6 @@ const AccountHome = () => {
             <h2>My categories</h2>
           </MenuItem>
         </MainBreadCrumb>
-        {section === "tweet-section" ? (
-          <MyCategorizedTweets currentUser={currentUser} />
-        ) : (
-          <MyCategories />
-        )}
       </MainContainer>
     </>
   );

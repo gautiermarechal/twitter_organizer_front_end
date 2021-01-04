@@ -59,10 +59,10 @@ function NavigationBar() {
           ) : (
             <>
               <Nav.Link className={styles.navItem}>
-                <Link to="sign-up">Sign Up</Link>
+                <Link to="/sign-up">Sign Up</Link>
               </Nav.Link>
               <Nav.Link className={styles.navItem}>
-                <Link to="login">Login</Link>
+                <Link to="/login">Login</Link>
               </Nav.Link>
             </>
           )}

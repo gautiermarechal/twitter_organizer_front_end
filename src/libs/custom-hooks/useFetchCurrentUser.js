@@ -11,6 +11,7 @@ const useFetchCurrentUser = () => {
         const user = res.data[0];
         dispatch(
           userLogIn({
+            id: user.id,
             email: user.email,
             tweetsBookmarked: user.tweets_bookmarked,
           })
