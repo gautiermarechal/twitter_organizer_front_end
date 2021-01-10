@@ -15,6 +15,7 @@ import useFetchCurrentUser from "./libs/custom-hooks/useFetchCurrentUser";
 import MyCategorizedTweets from "./components/MyCategorizedTweets";
 import MyCategories from "./components/MyCategories";
 import TweetsBookmarked from "./components/TweetsBookmarked";
+import ProfilePage from "./components/ProfilePage";
 //---------------------------------------------
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
         <Route path="/account/my-categorized-tweets">
           <MyCategorizedTweets />
         </Route>
+        <Route path="/account/authors-followed">
+          <MyCategorizedTweets />
+        </Route>
         <Route path="/account/my-categories">
           <MyCategories />
         </Route>
@@ -52,6 +56,9 @@ function App() {
         </Route>
         <Route path="/category/:categoryId">
           <CategoryPage />
+        </Route>
+        <Route path="/user/:id">
+          <ProfilePage />
         </Route>
       </Router>
     </div>

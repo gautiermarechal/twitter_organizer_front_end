@@ -13,7 +13,9 @@ const useFetchCurrentUser = () => {
           userLogIn({
             id: user.id,
             email: user.email,
-            tweetsBookmarked: user.tweets_bookmarked,
+            tweetsBookmarked: user.tweets_bookmarked
+              ? user.tweets_bookmarked
+              : [],
           })
         );
       });

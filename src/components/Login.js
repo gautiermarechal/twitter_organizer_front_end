@@ -51,7 +51,16 @@ const Login = () => {
           }
           // SUCCESS
           else if (res.data[0].password === password) {
-            dispatch(userLogIn(res.data[0]));
+            console.log(res.data[0]);
+            dispatch(
+              userLogIn({
+                id: res.data[0].id,
+                email: res.data[0].email,
+                tweetsBookmarked: res.data[0].tweets_bookmarked
+                  ? res.data[0].tweets_bookmarked
+                  : [],
+              })
+            );
             setNotFound(false);
             localStorage.setItem("useremail", email);
             history.push("/account");

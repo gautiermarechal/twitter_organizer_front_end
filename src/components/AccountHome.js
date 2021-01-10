@@ -42,6 +42,15 @@ const AccountHome = () => {
           </MenuItem>
           <MenuItem
             onClick={() => {
+              history.push("/account/authors-followed");
+              handleCurrentPage("authors-followed");
+            }}
+            currentPage={currentPage === "authors-followed" ? true : false}
+          >
+            <h2>Authors Followed</h2>
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
               history.push("/account/my-categorized-tweets");
               handleCurrentPage("my-categorized-tweets");
             }}

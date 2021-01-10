@@ -3,13 +3,14 @@ import styles from "./NavigationBar.module.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdAccountCircle } from "react-icons/md";
 import SearchBar from "./SearchBar";
 
 function NavigationBar() {
   const currentUser = useSelector((state) => state.currentUser);
+  const history = useHistory();
   return (
     <Navbar
       className={styles.navBarContainer}
@@ -39,7 +40,7 @@ function NavigationBar() {
           {currentUser.status === "loggedIn" ? (
             <>
               <Nav.Link className={styles.navItem}>
-                <Link to="account">
+                <Link to="/account">
                   <MdAccountCircle className={styles.icon} size={32} />
                 </Link>
               </Nav.Link>
@@ -49,6 +50,7 @@ function NavigationBar() {
                   className={styles.navItemButton}
                   onClick={() => {
                     localStorage.clear();
+                    history.push("/");
                     window.location.reload();
                   }}
                 >

@@ -121,6 +121,7 @@ function SignUp() {
         email: email,
         password: password,
         is_twitter_logged_in: false,
+        tweets_bookmarked: [],
       });
 
       history.push("/sign-up-successfull");

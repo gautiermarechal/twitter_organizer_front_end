@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Tweet from "./Tweet";
 
 const TweetsGrid = ({ tweets }) => {
+  const currentUser = useSelector((state) => state.currentUser);
+  useEffect(() => {
+    if (currentUser.status === "notLoggedIn") {
+      return;
+    }
+  }, [currentUser]);
   return (
     <>
       <MainGridContainer>
@@ -27,6 +34,17 @@ const TweetsGrid = ({ tweets }) => {
                     : element.tweet_organized_content
                 }
                 tweetContentExtended={element.tweet_organized_content}
+                isBookmarked={
+                  currentUser.status === "loggedIn"
+                    ? currentUser.currentUser.tweetsBookmarked === undefined
+                      ? false
+                      : currentUser.currentUser.tweetsBookmarked.includes(
+                          element.tweet_organized_id
+                        )
+                      ? true
+                      : false
+                    : false
+                }
               />
             );
           })}
