@@ -17,6 +17,7 @@ import MyCategories from "./components/MyCategories";
 import TweetsBookmarked from "./components/TweetsBookmarked";
 import ProfilePage from "./components/ProfilePage";
 import GlobalStyles from "./components/GlobalStyles";
+import AuthorsFollowed from "./components/AuthorsFollowed";
 //---------------------------------------------
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           <MyCategorizedTweets />
         </Route>
         <Route path="/account/authors-followed">
-          <MyCategorizedTweets />
+          <AuthorsFollowed />
         </Route>
         <Route path="/account/my-categories">
           <MyCategories />
