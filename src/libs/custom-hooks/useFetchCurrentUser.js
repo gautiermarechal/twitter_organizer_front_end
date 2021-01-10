@@ -16,6 +16,7 @@ const useFetchCurrentUser = () => {
             tweetsBookmarked: user.tweets_bookmarked
               ? user.tweets_bookmarked
               : [],
+            authorsFollowed: user.authors_followed ? user.authors_followed : [],
           })
         );
       });

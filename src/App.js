@@ -16,12 +16,14 @@ import MyCategorizedTweets from "./components/MyCategorizedTweets";
 import MyCategories from "./components/MyCategories";
 import TweetsBookmarked from "./components/TweetsBookmarked";
 import ProfilePage from "./components/ProfilePage";
+import GlobalStyles from "./components/GlobalStyles";
 //---------------------------------------------
 
 function App() {
   useFetchCurrentUser();
   return (
     <div className="App">
+      <GlobalStyles />
       <Router>
         <NavigationBar />
         <Route exact path="/">

@@ -4,6 +4,8 @@ const initialState = {
     id: "",
     name: "",
     username: "",
+    description: "",
+    url: "",
     tweetsOrganized: [],
   },
 };

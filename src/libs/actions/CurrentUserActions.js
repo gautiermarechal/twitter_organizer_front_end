@@ -1,4 +1,4 @@
-import apis from "../../api";
+import apis, { followAuthor } from "../../api";
 
 //Login actions
 export const requestUserLogIn = () => ({
@@ -37,6 +37,33 @@ export const asyncDeleteBookmarkTweet = (userid, tweetid) => {
   return (dispatch) => {
     apis.unBookmarkTweet(userid, tweetid).then(() => {
       dispatch(deleteBookmarkTweet(tweetid));
+    });
+  };
+};
+
+export const followUser = (data) => ({
+  type: "FOLLOW_AUTHOR",
+  data,
+});
+
+export const asyncFollowUser = (currentuserid, userid) => {
+  return (dispatch) => {
+    console.log("follow");
+    apis.followAuthor(currentuserid, userid).then(() => {
+      dispatch(followUser(userid));
+    });
+  };
+};
+
+export const unFollowUser = (data) => ({
+  type: "UNFOLLOW_AUTHOR",
+  data,
+});
+
+export const asyncUnFollowUser = (currentuserid, userid) => {
+  return (dispatch) => {
+    apis.unFollowAuthor(currentuserid, userid).then(() => {
+      dispatch(unFollowUser(userid));
     });
   };
 };

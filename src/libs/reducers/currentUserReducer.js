@@ -4,6 +4,7 @@ const initialState = {
     id: "",
     email: "",
     tweetsBookmarked: [],
+    authorsFollowed: [],
   },
 };
 
@@ -16,7 +17,6 @@ const currentUserReducer = (state = initialState, action) => {
     case "ERROR_USER_LOGIN":
       return { ...state, error: action.data, status: "error" };
     case "BOOKMARK_TWEET":
-      console.log(state);
       return {
         ...state,
         currentUser: {
@@ -35,6 +35,28 @@ const currentUserReducer = (state = initialState, action) => {
         currentUser: {
           ...state.currentUser,
           tweetsBookmarked: state.currentUser.tweetsBookmarked,
+        },
+      };
+    case "FOLLOW_AUTHOR":
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          tweetsBookmarked: [...state.currentUser.tweetsBookmarked],
+          authorsFollowed: [...state.currentUser.authorsFollowed, action.data],
+        },
+      };
+    case "UNFOLLOW_AUTHOR":
+      const indexAuthor = state.currentUser.authorsFollowed.indexOf(
+        action.data
+      );
+      state.currentUser.authorsFollowed.splice(indexAuthor, 1);
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          tweetsBookmarked: [...state.currentUser.tweetsBookmarked],
+          authorsFollowed: state.currentUser.authorsFollowed,
         },
       };
     default:

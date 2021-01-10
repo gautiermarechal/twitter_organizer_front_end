@@ -25,6 +25,12 @@ export const unBookmarkTweet = (userid, tweetid) =>
   api.delete(`/tweets/bookmark/${userid}/${tweetid}`);
 export const getBookmarkedTweets = (userid) =>
   api.get(`/tweets/bookmark/${userid}`);
+export const getAllTweetsFromUser = (userid) =>
+  api.get(`tweet-organized/user/${userid}`);
+export const followAuthor = (currentuserid, userid) =>
+  api.patch(`/user/follow/${currentuserid}/${userid}`);
+export const unFollowAuthor = (currentuserid, userid) =>
+  api.delete(`/user/follow/${currentuserid}/${userid}`);
 
 const apis = {
   createUser,
@@ -42,6 +48,9 @@ const apis = {
   bookmarkTweet,
   getBookmarkedTweets,
   unBookmarkTweet,
+  getAllTweetsFromUser,
+  followAuthor,
+  unFollowAuthor,
 };
 
 export default apis;

@@ -6,6 +6,7 @@ import {
   receiveUserPage,
   requestUserPage,
 } from "../actions/UserPageActions";
+import apis from "../../api";
 
 const useFetchCurrentUserProfile = (username) => {
   const dispatch = useDispatch();
@@ -16,7 +17,16 @@ const useFetchCurrentUserProfile = (username) => {
         .get(`http://localhost:5000/twitter-api/user/${username}`)
         .then((res) => {
           console.log(res);
-          dispatch(receiveUserPage(res));
+          dispatch(receiveUserPage({ ...res.data.data, tweetsOrganized: [] }));
+
+          apis.getAllTweetsFromUser(username).then((responseTweets) => {
+            dispatch(
+              receiveUserPage({
+                ...res.data.data,
+                tweetsOrganized: responseTweets.data.data,
+              })
+            );
+          });
         })
         .catch((err) => {
           console.log(err.message);
