@@ -31,6 +31,10 @@ const categories = [
     category: "Computer Science",
     color: "#7127E7",
   },
+  {
+    category: "Money",
+    color: "#278161",
+  },
 ];
 
 export default categories;

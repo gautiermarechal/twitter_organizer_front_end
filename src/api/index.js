@@ -31,6 +31,13 @@ export const followAuthor = (currentuserid, userid) =>
   api.patch(`/user/follow/${currentuserid}/${userid}`);
 export const unFollowAuthor = (currentuserid, userid) =>
   api.delete(`/user/follow/${currentuserid}/${userid}`);
+export const followCategory = (currentuserid, categoryName) =>
+  api.patch(`/category/follow/${currentuserid}/${categoryName}/`);
+export const unFollowCategory = (currentuserid, categoryName) =>
+  api.delete(`/category/unfollow/${currentuserid}/${categoryName}/`);
+export const getFollowedCategories = (userid) => {
+  api.get(`/category/followed/${userid}`);
+};
 
 const apis = {
   createUser,
@@ -51,6 +58,9 @@ const apis = {
   getAllTweetsFromUser,
   followAuthor,
   unFollowAuthor,
+  followCategory,
+  unFollowCategory,
+  getFollowedCategories,
 };
 
 export default apis;

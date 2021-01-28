@@ -17,6 +17,9 @@ const useFetchCurrentUser = () => {
               ? user.tweets_bookmarked
               : [],
             authorsFollowed: user.authors_followed ? user.authors_followed : [],
+            categoriesFollowed: user.categories_followed
+              ? user.categories_followed
+              : [],
           })
         );
       });

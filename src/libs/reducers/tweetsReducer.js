@@ -1,5 +1,6 @@
 const initialState = {
   currentCategory: "",
+  followed: null,
   tweetsByCategory: { status: "idle", data: [] },
   extendedTweet: {
     status: "idle",
@@ -30,6 +31,11 @@ const tweetsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentCategory: action.data,
+      };
+    case "TOGGLE_FOLLOW_CURENT_CATEGORY":
+      return {
+        ...state,
+        followed: action.data,
       };
     default:
       return state;

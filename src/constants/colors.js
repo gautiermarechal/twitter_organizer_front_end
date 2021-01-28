@@ -4,6 +4,7 @@ export const COLORS = {
   limeGreen: "#5CDB95",
   opaqueLightGreen: "#8EE4AF",
   sand: "EDF5E1",
+  greenyWhite: "#d0f6e3",
   biology: "#D0F6E3",
   philosophy: "#2B7DBC",
   economics: "#91000C",
