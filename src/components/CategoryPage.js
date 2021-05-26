@@ -29,23 +29,20 @@ function CategoryPage() {
     if (!currentCategory || !currentUser.categoriesFollowed) {
       return;
     }
-    function get() {
-      api
-        .getTweetByCategory(currentCategory)
-        .then((res) => {
-          dispatch(receiveTweetsByCategory(res.data));
-          dispatch(setCurrentCategory(currentCategory));
-        })
-        .then(() => {
-          if (currentUser.categoriesFollowed.includes(currentCategory)) {
-            dispatch(toggleFollowCurrentCategory(true));
-          } else {
-            dispatch(toggleFollowCurrentCategory(false));
-          }
-        })
-        .catch();
-    }
-    get();
+    api
+      .getTweetByCategory(currentCategory)
+      .then((res) => {
+        dispatch(receiveTweetsByCategory(res.data));
+        dispatch(setCurrentCategory(currentCategory));
+      })
+      .then(() => {
+        if (currentUser.categoriesFollowed.includes(currentCategory)) {
+          dispatch(toggleFollowCurrentCategory(true));
+        } else {
+          dispatch(toggleFollowCurrentCategory(false));
+        }
+      })
+      .catch();
   }, [currentUser, currentCategory]);
 
   const TitleContainer = styled.div`

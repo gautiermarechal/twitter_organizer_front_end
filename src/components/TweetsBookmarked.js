@@ -12,7 +12,7 @@ const TweetsBookmarked = () => {
       return;
     }
     apis
-      .getBookmarkedTweets(parseInt(currentUser.currentUser.id))
+      .getBookmarkedTweets(currentUser.currentUser.id)
       .then((res) => {
         console.log(res);
         setTweetsBookmarked(res.data.data);
@@ -21,9 +21,28 @@ const TweetsBookmarked = () => {
   }, [currentUser]);
   return (
     <>
-      <TweetsGrid tweets={tweetsBookmarked} />
+      {tweetsBookmarked ? (
+        tweetsBookmarked.length !== 0 ? (
+          <TweetsGrid tweets={tweetsBookmarked} />
+        ) : (
+          <>
+            <NoTweets>No tweets bookmarked</NoTweets>
+          </>
+        )
+      ) : (
+        <>
+          <NoTweets>Loading</NoTweets>
+        </>
+      )}
     </>
   );
 };
+
+const NoTweets = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  color: white;
+`;
 
 export default TweetsBookmarked;

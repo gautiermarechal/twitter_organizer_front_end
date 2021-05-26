@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import categories from "../assets/AllCategories";
-import { COLORS } from "../constants/colors";
 
 const MyCategories = () => {
   const categoriesFollowed = useSelector(
@@ -12,9 +10,13 @@ const MyCategories = () => {
     <>
       <CategoriesList>
         {categoriesFollowed ? (
-          categoriesFollowed.map((category) => {
-            return <CategoryItem>{category}</CategoryItem>;
-          })
+          categoriesFollowed.length !== 0 ? (
+            categoriesFollowed.map((category) => {
+              return <CategoryItem>{category}</CategoryItem>;
+            })
+          ) : (
+            <NoCategories>No Categories Followed</NoCategories>
+          )
         ) : (
           <>loading</>
         )}
@@ -32,5 +34,12 @@ const CategoriesList = styled.ul`
 `;
 
 const CategoryItem = styled.li``;
+
+const NoCategories = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  color: white;
+`;
 
 export default MyCategories;

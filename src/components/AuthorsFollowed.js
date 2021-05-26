@@ -27,29 +27,31 @@ const AuthorsFollowed = () => {
   return (
     <>
       <MainContainer>
-        {authorsFollowed.length === 0 ? (
-          <p>No Authors followed yet</p>
-        ) : (
-          <AuthorsList>
-            {authorsFullObjects.map((authorResponse) => {
-              const author = authorResponse.data.data;
-              return (
-                <>
-                  <Link to={`/user/${author.username}`}>
-                    <Author>
-                      <AuthorProfilePicture src={author.profile_image_url} />
-                      <InfoContainer>
-                        <AuthorName>{author.name}</AuthorName>
-                        <AuthorUsername>@{author.username}</AuthorUsername>
-                      </InfoContainer>
-                    </Author>
-                    <Line />
-                  </Link>
-                </>
-              );
-            })}
-          </AuthorsList>
-        )}
+        {authorsFollowed ? (
+          authorsFollowed.length === 0 ? (
+            <p>No Authors followed yet</p>
+          ) : (
+            <AuthorsList>
+              {authorsFullObjects.map((authorResponse) => {
+                const author = authorResponse.data.data;
+                return (
+                  <>
+                    <Link to={`/user/${author.username}`}>
+                      <Author>
+                        <AuthorProfilePicture src={author.profile_image_url} />
+                        <InfoContainer>
+                          <AuthorName>{author.name}</AuthorName>
+                          <AuthorUsername>@{author.username}</AuthorUsername>
+                        </InfoContainer>
+                      </Author>
+                      <Line />
+                    </Link>
+                  </>
+                );
+              })}
+            </AuthorsList>
+          )
+        ) : null}
       </MainContainer>
     </>
   );
@@ -59,6 +61,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
 `;
 
 const AuthorsList = styled.ul`
