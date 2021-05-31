@@ -34,7 +34,11 @@ const TweetsGrid = ({ tweets }) => {
                       ? element.tweet_organized_content[0]
                       : element.tweet_organized_content
                   }
-                  tweetContentExtended={element.tweet_organized_content}
+                  tweetContentExtended={
+                    element.tweet_organized_content
+                      ? element.tweet_organized_content[0]
+                      : element.tweet_organized_content
+                  }
                   isBookmarked={
                     currentUser.status === "loggedIn"
                       ? currentUser.currentUser.tweetsBookmarked === undefined

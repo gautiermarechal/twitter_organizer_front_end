@@ -89,16 +89,11 @@ function Tweet(props) {
             </p>
           </Col>
         </Row>
-        {props.tweetContent &&
-          (typeof props.tweetContent === "string" ? (
-            <Card.Text className={styles.tweetText}>
-              {props.tweetContent}
-            </Card.Text>
-          ) : (
-            props.tweetContentExtended.map((text) => {
-              return <Card.Text className={styles.tweetText}>{text}</Card.Text>;
-            })
-          ))}
+        {props.tweetContent && (
+          <Card.Text className={styles.tweetText}>
+            {props.tweetContent[0].text}
+          </Card.Text>
+        )}
         <hr style={{ backgroundColor: "#d0f6e3", width: "100%" }} />
         <div className={styles.buttonsTweetContainer}>
           <Button className={styles.readButton} onClick={handleReadTweet}>

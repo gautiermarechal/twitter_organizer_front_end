@@ -35,4 +35,6 @@
   text-align: left !important;
   line-height: 2;
   font-size: 25px;
+  display: flex;
+  flex-direction: column;
 }

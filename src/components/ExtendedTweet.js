@@ -52,8 +52,15 @@ function ExtendedTweet() {
                   </Col>
                 </Row>
                 <Card.Text className={styles.tweetText}>
-                  {extendedTweetObj.tweet_organized_content.map((text) => {
-                    return <p>{text}</p>;
+                  {extendedTweetObj.tweet_organized_content[0].map((item) => {
+                    console.log(item);
+                    return (
+                      <a
+                        href={`https://twitter.com/${extendedTweetObj.user_screen_name}/status/${item.id}`}
+                      >
+                        {item.text}
+                      </a>
+                    );
                   })}
                 </Card.Text>
               </Card.Body>
