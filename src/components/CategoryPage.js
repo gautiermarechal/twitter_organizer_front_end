@@ -94,17 +94,11 @@ function CategoryPage() {
           onClick={() => {
             if (isFollowed) {
               dispatch(
-                asyncUnFollowCurrentCategory(
-                  currentCategory,
-                  parseInt(currentUser.id)
-                )
+                asyncUnFollowCurrentCategory(currentCategory, currentUser.id)
               );
             } else {
               dispatch(
-                asyncFollowCurrentCategory(
-                  currentCategory,
-                  parseInt(currentUser.id)
-                )
+                asyncFollowCurrentCategory(currentCategory, currentUser.id)
               );
             }
           }}

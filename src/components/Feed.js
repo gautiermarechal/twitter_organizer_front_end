@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import TweetsGrid from "../components/TweetsGrid";
 
-const Feed = () => {
+const Feed = ({ title }) => {
   return (
     <>
-      <Title>Your feed</Title>
+      <Title>{title}</Title>
       <TweetsGrid />
     </>
   );

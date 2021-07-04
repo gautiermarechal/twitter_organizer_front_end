@@ -51,15 +51,6 @@ const AccountHome = () => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              history.push("/account/my-categorized-tweets");
-              handleCurrentPage("my-categorized-tweets");
-            }}
-            currentPage={currentPage === "my-categorized-tweets" ? true : false}
-          >
-            <h2>My Categorized Tweets</h2>
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
               history.push("/account/my-categories");
               handleCurrentPage("my-categories");
             }}

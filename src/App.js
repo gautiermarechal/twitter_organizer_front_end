@@ -45,9 +45,6 @@ function App() {
         <Route path="/account">
           <AccountHome />
         </Route>
-        <Route path="/account/my-categorized-tweets">
-          <MyCategorizedTweets />
-        </Route>
         <Route path="/account/authors-followed">
           <AuthorsFollowed />
         </Route>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./HomePage.module.css";
 import SearchBar from "./SearchBar";
 import Container from "react-bootstrap/Container";
@@ -7,8 +7,27 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Feed from "./Feed";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  errorCategories,
+  receiveCategories,
+  requestCategories,
+} from "../libs/actions/CategoriesActions";
+import apis from "../api";
 
 function HomePage() {
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories.categories);
+  useEffect(() => {
+    dispatch(requestCategories());
+
+    apis
+      .getAllCategories(8)
+      .then((res) => {
+        dispatch(receiveCategories(res.data.data));
+      })
+      .catch((err) => dispatch(errorCategories()));
+  }, []);
   return (
     <Container className={styles.mainContainer}>
       <Row className={styles.row1} float="center">
@@ -26,94 +45,18 @@ function HomePage() {
       </Row>
       <Row className={styles.row1} float="center">
         <Col className={styles.searchBarContainer}>
-          <SearchBar />
+          <SearchBar type="category" />
         </Col>
       </Row>
-      <Row className={styles.row1} float="center">
-        <Col md>
-          <Link to="/category/biology">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#0DC167", borderColor: "#0DC167" }}
-            >
-              Biology
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/philosophy">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#2A7DBC", borderColor: "#2A7DBC" }}
-            >
-              Philosophy
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/economics">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#91000C", borderColor: "#91000C" }}
-            >
-              Economics
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/bitcoin">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#F7931A", borderColor: "#F7931A" }}
-            >
-              Bitcoin
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-      <Row className={styles.row1} float="center">
-        <Col md>
-          <Link to="/category/society">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#046C7E", borderColor: "#046C7E" }}
-            >
-              Society
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/health">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#069055", borderColor: "#069055" }}
-            >
-              Health
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/psychology">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#B620E0", borderColor: "#B620E0" }}
-            >
-              Psychology
-            </Button>
-          </Link>
-        </Col>
-        <Col md>
-          <Link to="/category/computer-science">
-            <Button
-              className={styles.gridButton}
-              style={{ backgroundColor: "#7127E7", borderColor: "#7127E7" }}
-            >
-              Computer Science
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-      <Feed />
+      <div className={styles.grid}>
+        {categories.map((category) => (
+          <Col className={styles.category}>
+            <Link to={`/category/${category.id}`}>
+              <Button className={styles.gridButton}>{category.name}</Button>
+            </Link>
+          </Col>
+        ))}
+      </div>
     </Container>
   );
 }

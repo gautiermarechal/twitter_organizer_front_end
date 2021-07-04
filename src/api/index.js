@@ -41,6 +41,14 @@ export const getFollowedCategories = (userid) => {
 export const getUserFeed = (userid) => {
   api.get(`/feed/${userid}`);
 };
+export const getAllCategories = (limit) => {
+  if (limit) {
+    return api.get(`/categories?limit=${limit}`);
+  } else {
+    return api.get("/categories");
+  }
+};
+export const searchCategories = (query) => api.get(`/categories/${query}`);
 
 const apis = {
   createUser,
@@ -65,6 +73,8 @@ const apis = {
   unFollowCategory,
   getFollowedCategories,
   getUserFeed,
+  getAllCategories,
+  searchCategories,
 };
 
 export default apis;
