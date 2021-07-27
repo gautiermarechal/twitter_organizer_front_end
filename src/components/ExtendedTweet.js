@@ -28,8 +28,6 @@ function ExtendedTweet() {
 
   const extendedTweetObj = useSelector((state) => state.extendedTweet.data[0]);
 
-  console.log(extendedTweetObj);
-
   return (
     <>
       {extendedTweetObj ? (
@@ -53,7 +51,6 @@ function ExtendedTweet() {
                 </Row>
                 <Card.Text className={styles.tweetText}>
                   {extendedTweetObj.tweet_organized_content[0].map((item) => {
-                    console.log(item);
                     return (
                       <a
                         href={`https://twitter.com/${extendedTweetObj.user_screen_name}/status/${item.id}`}

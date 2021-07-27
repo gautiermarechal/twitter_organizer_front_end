@@ -14,7 +14,6 @@ const MyCategorizedTweets = () => {
     }
 
     apis.getAllTweetsFromUser(currentUser.currentUser.id).then((res) => {
-      console.log(res);
       setTweets(res.data.data);
     });
   }, [currentUser]);

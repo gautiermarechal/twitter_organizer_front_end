@@ -16,7 +16,6 @@ const useFetchCurrentUserProfile = (username) => {
       axios
         .get(`http://localhost:5000/twitter-api/user/${username}`)
         .then((res) => {
-          console.log(res);
           dispatch(receiveUserPage({ ...res.data.data, tweetsOrganized: [] }));
 
           apis.getAllTweetsFromUser(username).then((responseTweets) => {
@@ -29,7 +28,7 @@ const useFetchCurrentUserProfile = (username) => {
           });
         })
         .catch((err) => {
-          console.log(err.message);
+          console.error(err.message);
           dispatch(errorUserPage());
         });
     } catch (error) {

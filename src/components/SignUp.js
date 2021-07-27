@@ -36,7 +36,6 @@ function SignUp() {
   useEffect(() => {
     api.getAllUsers().then((res) => {
       setUsersList(res.data);
-      console.log(res.data);
     });
   }, []);
 

@@ -14,6 +14,7 @@ import bookmarkedTweetsReducer from "./libs/reducers/bookmarkedTweets";
 import userPageReducer from "./libs/reducers/userPageReducer";
 import thunk from "redux-thunk";
 import categoriesReducer from "./libs/reducers/categoriesReducer";
+import searchResultsReducer from "./libs/reducers/searchResultsReducer";
 
 const reducer = combineReducers({
   tweets: tweetsReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   bookmarkedTweets: bookmarkedTweetsReducer,
   userPage: userPageReducer,
   categories: categoriesReducer,
+  searchResults: searchResultsReducer,
 });
 
 const store = createStore(

@@ -43,7 +43,6 @@ const Login = () => {
       await api
         .getUserByEmail(email)
         .then((res, req) => {
-          console.log(res);
           if (res.data.length === 0) {
             setNotFound(true);
             setShowModal(true);
@@ -51,7 +50,6 @@ const Login = () => {
           }
           // SUCCESS
           else if (res.data[0].password === password) {
-            console.log(res.data[0]);
             dispatch(
               userLogIn({
                 id: res.data[0].id,
@@ -71,7 +69,7 @@ const Login = () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
   };

@@ -48,7 +48,6 @@ export const followUser = (data) => ({
 
 export const asyncFollowUser = (currentuserid, userid) => {
   return (dispatch) => {
-    console.log("follow");
     apis.followAuthor(currentuserid, userid).then(() => {
       dispatch(followUser(userid));
     });
