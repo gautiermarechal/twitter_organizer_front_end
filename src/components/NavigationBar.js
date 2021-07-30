@@ -29,9 +29,9 @@ function NavigationBar() {
         className={styles.collapseContainer}
       >
         <Nav id="responsive-navbar-nav" className={styles.navItemsContainer}>
-          <Nav.Link>
+          {/* <Nav.Link>
             <SearchBar />
-          </Nav.Link>
+          </Nav.Link> */}
           <Nav.Link>
             <Button size="lg" className={styles.navItemButton}>
               Categories

@@ -1,5 +1,8 @@
 export const COLORS = {
   white: "#FFFF",
+  grey: "#6F7782",
+  greyHover: "#F6F8F9",
+  greySubTitle: "#6E767D",
   primary: "#05386B",
   opaqueGreen: "#379683",
   limeGreen: "#5CDB95",

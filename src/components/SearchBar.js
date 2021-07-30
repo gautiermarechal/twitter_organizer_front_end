@@ -75,6 +75,10 @@ function SearchBar({ type }) {
     }
   }, [searchResults]);
 
+  const clearOnClick = () => {
+    setSearchQuery("");
+  };
+
   return (
     <>
       <Form className={styles.searchBar}>
@@ -89,6 +93,7 @@ function SearchBar({ type }) {
         <SearchResultsSnippet
           resultsData={searchResults}
           emptyResults={isNoResultsSnippet}
+          clearOnClick={clearOnClick}
         />
       ) : null}
     </>

@@ -22,7 +22,7 @@ function HomePage() {
     dispatch(requestCategories());
 
     apis
-      .getAllCategories(8)
+      .getAllCategories()
       .then((res) => {
         dispatch(receiveCategories(res.data.data));
       })
