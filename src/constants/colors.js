@@ -18,3 +18,12 @@ export const COLORS = {
   psychology: "#B620E0",
   computerScience: "#7127E7",
 };
+
+export const darkTheme = {
+  background: "#1E1F21",
+  surface: "#383838",
+  primary: "#51e1a9",
+  secondary: "#e1e151",
+  onSurface: "#f6f5f4",
+  onPrimary: "#1b3b33",
+};

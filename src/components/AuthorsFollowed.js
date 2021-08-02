@@ -3,15 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const AuthorsFollowed = () => {
   const authorsFollowed = useSelector(
     (state) => state.currentUser.currentUser.authorsFollowed
   );
   const [authorsFullObjects, setAuthorsFullObjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!authorsFollowed) {
+    if (!authorsFollowed || authorsFollowed.length === 0) {
       return;
     }
     const tempArray = [];
@@ -20,14 +22,17 @@ const AuthorsFollowed = () => {
       authorsFollowed.map((author) =>
         axios.get(`http://localhost:5000/twitter-api/user/${author}`)
       )
-    ).then((resultArray) => {
-      setAuthorsFullObjects(resultArray);
-    });
+    )
+      .then((resultArray) => {
+        setAuthorsFullObjects(resultArray);
+        setLoading(false);
+      })
+      .catch(() => setLoading(true));
   }, [authorsFollowed]);
   return (
     <>
       <MainContainer>
-        {authorsFollowed ? (
+        {!loading ? (
           authorsFollowed.length === 0 ? (
             <p>No Authors followed yet</p>
           ) : (
@@ -51,7 +56,11 @@ const AuthorsFollowed = () => {
               })}
             </AuthorsList>
           )
-        ) : null}
+        ) : (
+          <EmptyState>
+            <LoadingSpinner />
+          </EmptyState>
+        )}
       </MainContainer>
     </>
   );
@@ -61,6 +70,15 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+`;
+
+const EmptyState = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   color: white;
 `;
 

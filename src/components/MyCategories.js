@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import LoadingSpinner from "./LoadingSpinner";
 
 const MyCategories = () => {
   const categoriesFollowed = useSelector(
@@ -18,7 +19,9 @@ const MyCategories = () => {
             <NoCategories>No Categories Followed</NoCategories>
           )
         ) : (
-          <>loading</>
+          <EmptyState>
+            <LoadingSpinner />
+          </EmptyState>
         )}
       </CategoriesList>
     </>
@@ -38,6 +41,15 @@ const CategoryItem = styled.li``;
 const NoCategories = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
+  color: white;
+`;
+
+const EmptyState = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
   justify-content: center;
   color: white;
 `;

@@ -1,45 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import apis from "../api";
+import {
+  errorTweetsBookmarked,
+  receiveTweetsBookmarked,
+  requestTweetsBookmarked,
+} from "../libs/actions/BookmarkedTweetsActions";
+import LoadingSpinner from "./LoadingSpinner";
 import TweetsGrid from "./TweetsGrid";
 
 const TweetsBookmarked = () => {
   const currentUser = useSelector((state) => state.currentUser);
-  const [tweetsBookmarked, setTweetsBookmarked] = useState([]);
+  const tweetsBookmarked = useSelector((state) => state.bookmarkedTweets);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(requestTweetsBookmarked());
     if (currentUser.status === "notLoggedIn") {
       return;
     }
     apis
       .getBookmarkedTweets(currentUser.currentUser.id)
       .then((res) => {
-        setTweetsBookmarked(res.data.data);
+        dispatch(receiveTweetsBookmarked(res.data.data));
       })
-      .catch((err) => console.error(err));
+      .catch(() => dispatch(errorTweetsBookmarked()));
   }, [currentUser]);
   return (
     <>
-      {tweetsBookmarked ? (
-        tweetsBookmarked.length !== 0 ? (
-          <TweetsGrid tweets={tweetsBookmarked} />
+      {tweetsBookmarked.status === "received" ? (
+        tweetsBookmarked.tweets.length !== 0 ? (
+          <>
+            <TweetsGrid tweets={tweetsBookmarked.tweets} />
+          </>
         ) : (
           <>
-            <NoTweets>No tweets bookmarked</NoTweets>
+            <EmptyState>No tweets bookmarked</EmptyState>
           </>
         )
       ) : (
-        <>
-          <NoTweets>Loading</NoTweets>
-        </>
+        <EmptyState>
+          <LoadingSpinner />
+        </EmptyState>
       )}
     </>
   );
 };
 
-const NoTweets = styled.div`
+const EmptyState = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
+  align-items: center;
   justify-content: center;
   color: white;
 `;

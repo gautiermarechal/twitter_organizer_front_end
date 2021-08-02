@@ -6,72 +6,77 @@ import Button from "react-bootstrap/Button";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdAccountCircle } from "react-icons/md";
-import SearchBar from "./SearchBar";
+import styled from "styled-components";
+import { darkTheme } from "../constants/colors";
 
 function NavigationBar() {
   const currentUser = useSelector((state) => state.currentUser);
   const history = useHistory();
   return (
-    <Navbar
-      className={styles.navBarContainer}
-      collapseOnSelect
-      expand="md"
-      variant="dark"
-    >
+    <NavigationWrapper>
       <Link to="/">
-        <Navbar.Brand className={styles.mainTitle}>
-          Twitter Organizer
-        </Navbar.Brand>
+        <MainTitle className={styles.mainTitle}>Twitter Organizer</MainTitle>
       </Link>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse
-        id="responsive-navbar-nav"
-        className={styles.collapseContainer}
-      >
-        <Nav id="responsive-navbar-nav" className={styles.navItemsContainer}>
-          {/* <Nav.Link>
-            <SearchBar />
-          </Nav.Link> */}
-          <Nav.Link>
-            <Button size="lg" className={styles.navItemButton}>
-              Categories
-            </Button>
-          </Nav.Link>
-          {currentUser.status === "loggedIn" ? (
-            <>
-              <Nav.Link className={styles.navItem}>
-                <Link to="/account">
-                  <MdAccountCircle className={styles.icon} size={32} />
-                </Link>
-              </Nav.Link>
-              <Nav.Link className={styles.navItem}>
-                <Button
-                  size="lg"
-                  className={styles.navItemButton}
-                  onClick={() => {
-                    localStorage.clear();
-                    history.push("/");
-                    window.location.reload();
-                  }}
-                >
-                  Logout
-                </Button>
-              </Nav.Link>
-            </>
-          ) : (
-            <>
-              <Nav.Link className={styles.navItem}>
-                <Link to="/sign-up">Sign Up</Link>
-              </Nav.Link>
-              <Nav.Link className={styles.navItem}>
-                <Link to="/login">Login</Link>
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      <Menu id="responsive-navbar-nav">
+        <MenuItem>
+          <PrimaryButton>Categories</PrimaryButton>
+        </MenuItem>
+        {currentUser.status === "loggedIn" ? (
+          <>
+            <MenuItem className={styles.navItem}>
+              <Link to="/account/tweets-bookmarked">
+                <MdAccountCircle className={styles.icon} size={32} />
+              </Link>
+            </MenuItem>
+          </>
+        ) : (
+          <>
+            <MenuItem className={styles.navItem}>
+              <Link to="/sign-up">Sign Up</Link>
+            </MenuItem>
+            <MenuItem className={styles.navItem}>
+              <Link to="/login">Login</Link>
+            </MenuItem>
+          </>
+        )}
+      </Menu>
+    </NavigationWrapper>
   );
 }
+
+const NavigationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  padding: 40px;
+  background-color: ${darkTheme.surface};
+`;
+
+const MainTitle = styled.h1`
+  color: ${darkTheme.onSurface};
+`;
+
+const SubTitle = styled.div``;
+
+const Menu = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const MenuItem = styled.div`
+  margin-right: 10px;
+`;
+
+const PrimaryButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${darkTheme.primary};
+  color: ${darkTheme.onPrimary};
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+`;
 
 export default NavigationBar;

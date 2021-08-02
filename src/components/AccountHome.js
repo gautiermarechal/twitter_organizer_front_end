@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import MyCategorizedTweets from "./MyCategorizedTweets";
-import MyCategories from "./MyCategories";
 import api from "../api/index";
-import { useHistory, useParams } from "react-router-dom";
-import { COLORS } from "../constants/colors";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 const AccountHome = () => {
-  const [section, setSection] = useState("tweet-section");
   const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState("");
-  const params = useParams();
+  const currentTab =
+    useLocation().pathname.split("/")[
+      useLocation().pathname.split("/").length - 1
+    ];
 
   useEffect(() => {
+    handleCurrentPage(currentTab);
     let user = {};
     const get = async () => {
       user = await api.getUserByEmail(localStorage.getItem("useremail"));
