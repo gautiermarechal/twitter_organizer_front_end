@@ -4,9 +4,7 @@ import SearchBar from "./SearchBar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import Feed from "./Feed";
 import { useDispatch, useSelector } from "react-redux";
 import {
   errorCategories,
@@ -14,6 +12,9 @@ import {
   requestCategories,
 } from "../libs/actions/CategoriesActions";
 import apis from "../api";
+import CategoryItem from "./CategoryItem";
+import styled from "styled-components";
+import { darkTheme } from "../constants/colors";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -29,30 +30,25 @@ function HomePage() {
       .catch((err) => dispatch(errorCategories()));
   }, []);
   return (
-    <Container className={styles.mainContainer}>
-      <Row className={styles.row1} float="center">
+    <Container>
+      <TitleContainer>
         <Col>
-          <h1 className={styles.header1}>Welcome to Twitter Organizer!</h1>
+          <MainTitle>Twitter Organizer</MainTitle>
         </Col>
-      </Row>
-      <Row className={styles.row1} float="center">
+      </TitleContainer>
+      <SubTitleContainer>
         <Col>
-          <h5 className={styles.header1}>
+          <SubTitle>
             No need to scroll down 2h anymore. Find the most relevant tweets and
             threads, categorized under subjects!
-          </h5>
+          </SubTitle>
         </Col>
-      </Row>
-      <Row className={styles.row1} float="center">
-        <Col className={styles.searchBarContainer}>
-          <SearchBar type="category" />
-        </Col>
-      </Row>
+      </SubTitleContainer>
       <div className={styles.grid}>
         {categories.map((category) => (
           <Col className={styles.category}>
             <Link to={`/category/${category.id}`}>
-              <Button className={styles.gridButton}>{category.name}</Button>
+              <CategoryItem title={category.name} />
             </Link>
           </Col>
         ))}
@@ -60,5 +56,23 @@ function HomePage() {
     </Container>
   );
 }
+
+const MainTitle = styled.h1`
+  color: ${darkTheme.onBackground};
+  text-align: center;
+`;
+
+const SubTitle = styled.h5`
+  color: ${darkTheme.onBackground};
+  text-align: center;
+`;
+
+const TitleContainer = styled(Row)`
+  margin-top: 50px;
+`;
+
+const SubTitleContainer = styled(Row)`
+  margin-bottom: 20px;
+`;
 
 export default HomePage;

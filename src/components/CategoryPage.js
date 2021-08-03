@@ -16,6 +16,7 @@ import { COLORS } from "../constants/colors";
 import TweetsGrid from "./TweetsGrid";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
+import { borders } from "../constants/borders";
 
 function CategoryPage() {
   const dispatch = useDispatch();
@@ -48,8 +49,8 @@ function CategoryPage() {
   const TitleContainer = styled.div`
     display: flex;
     width: 100%;
-    background-color: ${COLORS[currentCategory]};
     height: 100px;
+    border-bottom: ${borders.elevation0};
     color: white;
     justify-content: center;
     align-items: center;
@@ -107,9 +108,6 @@ function CategoryPage() {
         </FollowButton>
       </TitleContainer>
       <Container>
-        <SearchBarContainer>
-          <SearchBar />
-        </SearchBarContainer>
         <TweetsGrid tweets={tweets} />
       </Container>
     </>

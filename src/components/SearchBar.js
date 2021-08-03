@@ -8,6 +8,8 @@ import {
   errorSearchResults,
 } from "../libs/actions/SearchResultsActions";
 import SearchResultsSnippet from "./SearchResultsSnippet";
+import styled from "styled-components";
+import { darkTheme } from "../constants/colors";
 
 function SearchBar({ type }) {
   const searchResults = useSelector((state) => state.searchResults);
@@ -80,15 +82,13 @@ function SearchBar({ type }) {
   };
 
   return (
-    <>
-      <Form className={styles.searchBar}>
-        <Form.Control
-          type="text"
-          placeholder="Search"
-          style={{ height: "50px" }}
-          onChange={(e) => onSearch(e.target.value)}
-        />
-      </Form>
+    <Wrapper>
+      <Input
+        type="text"
+        placeholder="Search"
+        style={{ height: "50px" }}
+        onChange={(e) => onSearch(e.target.value)}
+      />
       {displaySnippet ? (
         <SearchResultsSnippet
           resultsData={searchResults}
@@ -96,8 +96,25 @@ function SearchBar({ type }) {
           clearOnClick={clearOnClick}
         />
       ) : null}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+const Input = styled.input`
+  width: 250px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  background-color: ${darkTheme.overlay};
+  outline: none;
+  caret-color: ${darkTheme.onBackground};
+  color: ${darkTheme.onBackground};
+`;
 
 export default SearchBar;

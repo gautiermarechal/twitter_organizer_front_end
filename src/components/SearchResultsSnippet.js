@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { COLORS } from "../constants/colors";
+import { COLORS, darkTheme } from "../constants/colors";
 import PlaceholderImage from "../assets/images/user_avatar_placeholder.png";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import { shadows } from "../constants/shadows";
+import { borders } from "../constants/borders";
 
 const SearchResultsSnippet = ({ resultsData, emptyResults, clearOnClick }) => {
   const [results, setResults] = useState([]);
@@ -47,10 +49,10 @@ const SearchResultsSnippet = ({ resultsData, emptyResults, clearOnClick }) => {
     <>
       <MainContainer>
         {!emptyResults ? (
-          results.map((result) => {
+          results.map((result, index) => {
             return result.data[0] ? (
               <EntityContainer>
-                <Divider />
+                <Divider index={index} />
                 <EntityTitle> {result.entity} </EntityTitle>
                 {result.data
                   ? result.data.map((item) => {
@@ -63,7 +65,7 @@ const SearchResultsSnippet = ({ resultsData, emptyResults, clearOnClick }) => {
                                 history.push(`/category/${item.id}`);
                               }}
                             >
-                              {item.name}
+                              <ItemTitle>{item.name}</ItemTitle>
                             </ResultListItem>
                           );
                         case "Twitter Organizer User":
@@ -141,7 +143,7 @@ const SearchResultsSnippet = ({ resultsData, emptyResults, clearOnClick }) => {
             ) : null;
           })
         ) : (
-          <h1>No results found</h1>
+          <ItemTitle>No results found</ItemTitle>
         )}
       </MainContainer>
     </>
@@ -152,9 +154,15 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${COLORS.white};
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: ${darkTheme.overlay};
+  box-shadow: ${shadows.three};
+  border: ${borders.elevation0};
+  border-radius: 8px;
   padding: 20px;
+  position: absolute;
+  top: 54px;
+  width: 500px;
+  z-index: 500;
 `;
 
 const EntityContainer = styled.div`
@@ -172,7 +180,7 @@ const ResultListItem = styled.div`
   margin-right: -20px;
   transition: 0.2s;
   &:hover {
-    background-color: ${COLORS.greyHover};
+    background-color: ${darkTheme.hover};
   }
 `;
 
@@ -185,21 +193,23 @@ const ResultListItemTweetOrganized = styled.div`
   margin-right: -20px;
   transition: 0.2s;
   &:hover {
-    background-color: ${COLORS.greyHover};
+    background-color: ${darkTheme.hover};
   }
 `;
 
 const EntityTitle = styled.h5`
-  color: ${COLORS.grey};
+  color: ${darkTheme.onBackground};
 `;
 
 const Divider = styled.div`
-  margin-top: 20px;
+  display: ${(props) => (props.index === 1 ? "none" : "block")};
   margin-bottom: 10px;
   border: 0;
   height: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  margin-right: -20px;
+  margin-left: -20px;
 `;
 
 const UserAvatar = styled.img`
@@ -213,11 +223,12 @@ const ItemTitle = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${darkTheme.onBackground};
 `;
 
 const ItemSubTitle = styled.span`
   margin-left: 10px;
-  color: ${COLORS.greySubTitle};
+  color: ${darkTheme.onSurface};
 `;
 
 const ItemInfoContainer = styled.div`

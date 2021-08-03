@@ -20,10 +20,14 @@ export const COLORS = {
 };
 
 export const darkTheme = {
-  background: "#1E1F21",
+  background: "#212121",
   surface: "#383838",
-  primary: "#51e1a9",
+  overlay: "#424242",
+  higherOverlay: "#989494",
+  primary: "#63a4ff",
   secondary: "#e1e151",
+  onBackground: "#ffff",
   onSurface: "#f6f5f4",
   onPrimary: "#1b3b33",
+  hover: "rgba(255, 255, 255, 0.25)",
 };
