@@ -98,6 +98,16 @@ function NavigationBar() {
                 <MdAccountCircle className={styles.icon} size={32} />
               </Link>
             </MenuItem>
+            <MenuItem
+              className={styles.navItem}
+              onClick={() => {
+                localStorage.removeItem("useremail");
+                history.push("/");
+                window.location.reload();
+              }}
+            >
+              <Logout>Logout</Logout>
+            </MenuItem>
           </>
         ) : (
           <>
@@ -127,7 +137,11 @@ const MainTitle = styled.h1`
   color: ${darkTheme.onSurface};
 `;
 
-const SubTitle = styled.div``;
+const Logout = styled.p`
+  margin: 0px;
+  color: ${darkTheme.onSurface};
+  cursor: pointer;
+`;
 
 const Menu = styled.div`
   display: flex;

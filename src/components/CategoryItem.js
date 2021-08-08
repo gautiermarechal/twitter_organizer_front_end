@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   background-color: ${darkTheme.surface};
   height: 100px;
   border-radius: 8px;
-  box-shadow: ${shadows.one};
 `;
 
 const Title = styled.h3``;
